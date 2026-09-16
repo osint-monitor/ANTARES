@@ -1,0 +1,71 @@
+Produci il Playbook di Contrasto ANTARES basandoti sui seguenti dati di intelligence.
+
+=== INTELLIGENCE RED TEAM ===
+OBIETTIVO PSYOPS RILEVATO: {psyops_obj}
+TARGET AUDIENCE COLPITA: {target_aud}
+PAYLOAD SOCIAL IDENTIFICATO: {social_pay}
+INDICATORI DI AMPLIFICAZIONE: {indicators}
+TECNICHE DISARM APPLICATE: {disarm_tech}
+PUNTO DI DEBOLEZZA DELL'ATTORE: {weak_spots}
+NOTIZIA ORIGINE: {fact_text}
+=== FINE INTELLIGENCE ===
+
+Compila il seguente Playbook rispettando ESATTAMENTE questa struttura Markdown.
+Non aggiungere sezioni extra. Non omettere sezioni. Non usare frasi generiche.
+
+---
+
+### 1. Valutazione Immediata della Minaccia
+
+#### Natura dell'Operazione
+[In 2 frasi: descrivi il tipo specifico di operazione informativa rilevata, citando la tecnica DISARM identificata e il meccanismo cognitivo sfruttato sull'audience italiana.]
+
+#### Finestra Temporale Critica
+[Indica la finestra di vulnerabilità (es. prime 2-6 ore dalla pubblicazione, ciclo elettorale, etc.) e il motivo per cui è critica per QUESTO attacco specifico.]
+
+---
+
+### 2. Contro-Narrativa Strategica (Prebunking)
+
+#### Comunicato Stampa Istituzionale
+[Scrivi un comunicato stampa pronto all'uso, max 120 parole, da diffondere PRIMA che l'operazione si consolidi. Deve smontare il frame narrativo specifico rilevato in {psyops_obj}.]
+
+#### Key Message di Risposta
+[3 bullet point con i messaggi chiave da veicolare, ciascuno direttamente opposto a un elemento del payload social identificato: {social_pay}]
+
+---
+
+### 3. Direttive per i Media Mainstream
+
+[3 direttive pratiche numerate per le redazioni giornalistiche. Devono essere specifiche per questo evento, non generiche. Per ciascuna: indica COSA fare, PERCHÉ è necessario in questo contesto, e COME evitare di amplificare involontariamente gli indicatori: {indicators}.]
+
+---
+
+### 4. Piano OSINT e Monitoraggio Piattaforme
+
+#### Piattaforme Prioritarie
+[Elenca le 3 piattaforme da monitorare con priorità ALTA per questo attore specifico, motivando la scelta in base ai vettori comunicativi dell'attore.]
+
+#### Query di Monitoraggio
+[Fornisci 4 query pronte all'uso per strumenti OSINT (es. formato Maltego, Boolean search per TweetDeck/X Advanced Search, o query Brandwatch). Le query DEVONO includere gli indicatori specifici rilevati: {indicators}.]
+
+#### Segnali di Escalation
+[Descrivi 3 segnali concreti che indicano che l'operazione sta escalando e richiede intervento di Tier 2 (es. coordinamento NATO StratCom, AGCOM, Polizia Postale).]
+
+---
+
+### 5. Debunking Tattico (Post-Attacco)
+
+#### Post Governativo #1 — Canale Istituzionale
+[Testo pronto per account ufficiale (es. @Palazzo_Chigi o @poliziadistato), max 40 parole. Deve smentire direttamente il payload: {social_pay}. Includi un invito a verificare su fonti certificate.]
+
+#### Post Governativo #2 — Registro Divulgativo
+[Testo per account di comunicazione pubblica (tono più accessibile, max 40 parole). Usa un'analogia o un fatto verificabile per smontare il frame narrativo senza citare direttamente la disinformazione.]
+
+---
+
+### 6. Escalation e Coordinamento Inter-Agenzia
+
+[Indica: (a) soglia di escalation per coinvolgere AGCOM/ACN/Polizia Postale, (b) canale di notifica UE (EUvsDisinfo / EEAS) se l'operazione ha matrice straniera confermata, (c) eventuale notifica NATO StratCom si applicabile al profilo dell'attore {nome}.]
+
+---

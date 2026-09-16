@@ -1,0 +1,57 @@
+{
+  "nome": "Doppelgänger (Reliable Recent News)",
+  "tipo": "Structured Disinformation Operation (Typosquatting/Fake News / Pro-Russian)",
+  "descrizione": "Pro-Russian industrial disinformation and media manipulation operation targeting the European information environment. Specializing in typosquatting and mirror cloning of authoritative European and Western news outlets, it employs coordinated social-media networks, counterfeit articles, manipulated videos, and impersonated media brands to undermine support for Ukraine, weaken trust in democratic institutions, and polarize European public opinion around economic, social, migration, and geopolitical concerns.",
+  "vettori_comunicativi": [
+    "Mirror and illegitimate cloning of authoritative European and Western news outlets and institutional websites (e.g., ANSA, Le Monde, Der Spiegel, The Guardian, NATO)",
+    "Coordinated networks of inauthentic accounts on X/Twitter, Facebook, Instagram, and other platforms for cross-platform amplification",
+    "Generation of manipulated or deceptive videos and infographics using cloned media or institutional branding",
+    "Massive injection of inauthentic posts, comments, advertisements, and links to increase the visibility of fabricated narratives"
+  ],
+  "targeting_cognitivo": "European citizens and political constituencies concerned about economic stability, inflation, energy prices, migration, defense spending, social tensions, and the consequences of supporting Ukraine. The operation adapts narratives to national contexts while seeking to fragment European and transatlantic cohesion.",
+  "tono_narrativo": "Alarmist, pseudo-journalistic, polarizing, and apparently authoritative. Feigns the visual and editorial language of trusted European media or institutions while presenting fabricated or manipulated stories as legitimate reporting. Recurring narratives portray European governments and institutions as incompetent, corrupt, economically damaging, or excessively subordinate to foreign geopolitical interests.",
+  "obiettivi_strategici_permanenti": [
+    "Erode public consensus for European economic, political, and military support to Ukraine and weaken confidence in transatlantic alliances",
+    "Exacerbate internal social divisions by exploiting real concerns about inflation, energy costs, migration, taxation, defense spending, and living standards",
+    "Fuel eurosceptic and anti-establishment sentiment by portraying the European Union and national governments as ineffective, disconnected, or harmful to citizens",
+    "Undermine trust in established media, public institutions, and authoritative information sources by systematically impersonating them"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0098.001 - Create Inauthentic News Sites (Create inauthentic news websites)",
+    "T0143.003 - Impersonated Persona (Impersonate existing media or institutions)",
+    "T0146.007 - Automated Account Asset (Use accounts for automated activity)"
+  ],
+  "vulnerabilita_operative": [
+    "Timely and coordinated disruption of newly registered clone domains and impersonated media infrastructure",
+    "Rapid visual and technical authentication mechanisms allowing legitimate European media and institutions to warn audiences about fraudulent clones",
+    "Cross-platform detection of coordinated inauthentic behaviour, synchronized link sharing, and repeated domain amplification",
+    "Improved cooperation between European media, domain registrars, cybersecurity authorities, researchers, and online platforms",
+    "Pre-established communication protocols for major European institutions and media outlets to rapidly expose impersonation campaigns and limit narrative reach"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Operation Clone-News (2022-Ongoing)",
+      "descrizione": "Identified by EU DisinfoLab, it is a major European information-sabotage campaign. The operators cloned numerous news outlets, including Le Monde, The Guardian, Der Spiegel, and the Italian ANSA, by registering similar or deceptive domains. Fabricated articles and videos were placed on the fake outlets and amplified through social media and advertising networks to undermine support for Ukraine, damage trust in European media, and exploit social and economic grievances.",
+      "fonti": [
+        {
+          "nome": "EU DisinfoLab - Doppelgänger Report",
+          "url": "https://www.disinfo.eu/doppelganger/"
+        },
+        {
+          "nome": "Wikipedia - Doppelgänger",
+          "url": "https://en.wikipedia.org/wiki/Doppelganger_(disinformation_campaign)"
+        }
+      ]
+    },
+    {
+      "nome": "Amplification of Fear in France (2023)",
+      "descrizione": "Exploiting tensions surrounding the war in the Middle East, the Doppelgänger ecosystem inauthentically amplified images of Stars of David painted on buildings in Paris. French authorities, including VIGINUM, identified coordinated online amplification involving a large network of automated accounts. The operation sought to intensify existing social and religious tensions, generate confusion, and polarize French public opinion.",
+      "fonti": [
+        {
+          "nome": "Le Club Du Juristes - Russian interference in France",
+          "url": "https://www.leclubdesjuristes.com/societe/affaire-des-etoiles-de-david-taguees-a-paris-quelles-poursuites-possibles-dans-le-cas-dun-commanditaire-etranger-3717/"
+        }
+      ]
+    }
+  ]
+}

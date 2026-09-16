@@ -1,0 +1,60 @@
+{
+  "nome": "APT28 (Fancy Bear / STRONTIUM)",
+  "descrizione": "Unità di minaccia avanzata permanente (APT) legata all'intelligence militare russa (GRU). Specializzata in operazioni Hack-and-Leak, spear-phishing ad alto profilo ed eversione cognitiva volte a destabilizzare le istituzioni democratiche e la coesione delle alleanze occidentali.",
+  "tipo": "GRU Intelligence Militare russa (State-Sponsored Hack-and-Leak)",
+  "vettori_comunicativi": [
+    "Fughe di notizie strategiche e manipolate (Hack & Leak) mirate a media mainstream",
+    "Piattaforme fake di giornalismo investigativo e whistleblowing (es. finti cloni di WikiLeaks)",
+    "Infiltrazione cognitiva tramite account social di finti analisti o reporter indipendenti",
+    "Operazioni di Spear-Phishing ad alto livello trasformate in scandali politici coordinati"
+  ],
+  "targeting_cognitivo": "Classi dirigenti occidentali, partiti politici democratici, alleanze militari (NATO, istituzioni di difesa), elettorato polarizzabile durante le finestre di voto.",
+  "tono_narrativo": "Subdolo, fintamente oggettivo, autorevole e cospirativo. Utilizza un linguaggio tipico del giornalismo d'inchiesta d'élite per presentare documenti reali ma rubati ed estrapolati dal contesto, per dimostrare una presunta 'debolezza e corruzione sistemica' dell'Occidente.",
+  "obiettivi_strategici_permanenti": [
+    "Sovvertire i processi elettorali e minare la legittimità delle democrazie liberali",
+    "Indebolire la coesione e la prontezza operativa della NATO e dei partner europei",
+    "Paralizzare i processi decisionali governativi tramite lo shock informativo e lo scandalo politico"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0095 - Develop Owned Media Assets (Creare propri canali di diffusione)",
+    "T0117 - Attract Traditional Media (Attirare l'attenzione della stampa)",
+    "T0143.002 - Fabricated Persona (Creare un'identità fittizia credibile)",
+    "T0143.003 - Impersonated Persona (Usare l'identità di altri)",
+    "T0097.104 - Hacktivist Persona (Fingere un'identità di hacktivista)"
+  ],
+  "vulnerabilita_operative": [
+    "Cyber-hygiene restrittiva e blocco preventivo delle campagne di phishing (neutralizzazione del vettore iniziale)",
+    "Attribuzione formale e rapida dell'attacco d'intelligence da parte delle agenzie di sicurezza (Cyber Threat Intelligence)",
+    "Media literacy e accordi con i media mainstream per non amplificare i leak non verificati provenienti da fonti ostili"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Macron Leaks (Elezioni Francesi 2017)",
+      "descrizione": "A due giorni dal ballottaggio presidenziale francese, APT28 ha diffuso 9 gigabyte di email interne della campagna di Emmanuel Macron. L'operazione mirava ad avvantaggiare la candidata avversaria Marine Le Pen. I documenti autentici sono stati mescolati a falsi grossolani (forgeries) per generare scandali inesistenti su conti offshore, sfruttando la tecnica di 'Hack-and-Leak' in un momento in cui i media francesi non potevano legalmente verificare le notizie per via del silenzio elettorale.",
+      "fonti": [
+        {
+          "nome": "Wikipedia - Macron email leaks",
+          "url": "https://en.wikipedia.org/wiki/2017_Macron_e-mail_leaks"
+        },
+        {
+          "nome": "Berlin Policy Journal - Macron leaks",
+          "url": "https://berlinpolicyjournal.com/lessons-of-macronleaks/"
+        }
+      ]
+    },
+    {
+      "nome": "Attacco al DNC (Elezioni USA 2016)",
+      "descrizione": "Tramite campagne mirate di spear-phishing, l'attore è penetrato nei server del Democratic National Committee (DNC) statunitense. Le email esfiltrate sono state poi passate a WikiLeaks e diffuse tramite i falsi alias 'Guccifer 2.0' e 'DCLeaks'. L'obiettivo era creare profonda disillusione nell'elettorato democratico e alimentare narrazioni di corruzione interna al partito.",
+      "fonti": [
+        {
+          "nome": "Wikipedia - DNC Cyberattack",
+          "url": "https://en.wikipedia.org/wiki/Democratic_National_Committee_cyber_attacks"
+        },
+        {
+          "nome": "The Guardian - DNC email leak",
+          "url": "https://www.theguardian.com/technology/2016/jul/26/dnc-email-leak-russian-hack-guccifer-2"
+        }
+      ]
+    }
+  ]
+}

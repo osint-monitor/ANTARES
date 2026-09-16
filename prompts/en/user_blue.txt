@@ -1,0 +1,71 @@
+Generate the ANTARES Counter-Playbook based on the following intelligence data.
+
+=== RED TEAM INTELLIGENCE ===
+DETECTED PSYOPS OBJECTIVE: {psyops_obj}
+TARGET AUDIENCE AFFECTED: {target_aud}
+IDENTIFIED SOCIAL PAYLOAD: {social_pay}
+AMPLIFICATION INDICATORS: {indicators}
+APPLIED DISARM TECHNIQUES: {disarm_tech}
+ACTOR WEAK SPOTS: {weak_spots}
+ORIGIN NEWS/FACT: {fact_text}
+=== END INTELLIGENCE ===
+
+Complete the following Playbook adhering EXACTLY to this Markdown structure. All text must be in ENGLISH language.
+Do not add extra sections. Do not omit sections. Do not use generic statements.
+
+---
+
+### 1. Immediate Threat Assessment
+
+#### Operation Nature
+[In 2 sentences: describe the specific type of information operation detected, citing the identified DISARM technique and the cognitive mechanism exploited in the target audience.]
+
+#### Critical Time Window
+[Indicate the vulnerability window (e.g., first 2-6 hours post-publication, electoral cycle) and explain why it is critical for THIS specific attack.]
+
+---
+
+### 2. Strategic Counter-Narrative (Prebunking)
+
+#### Institutional Press Release
+[Write a ready-to-publish official press release, max 120 words, to be distributed BEFORE the operation gains traction. It must dismantle the specific narrative frame identified in {psyops_obj}. Signature: "Government Strategic Communications Directorate — Crisis Information Cell".]
+
+#### Key Response Messages
+[3 bullet points with core key messages to convey, each directly countering an element of the identified social payload: {social_pay}]
+
+---
+
+### 3. Mainstream Media Directives
+
+[3 practical numbered directives for newsrooms and media editors. They must be specific to this event, not generic. For each: state WHAT to do, WHY it is necessary in this context, and HOW to avoid inadvertently amplifying the indicators: {indicators}.]
+
+---
+
+### 4. OSINT Plan and Platform Monitoring
+
+#### Priority Platforms
+[List the top 3 platforms to monitor with HIGH priority for this specific actor, justifying the choice based on the actor's communication vectors.]
+
+#### Monitoring Queries
+[Provide 4 ready-to-use queries for OSINT tools (e.g., Maltego format, Boolean search for TweetDeck/X Pro Advanced Search, or Brandwatch queries). Queries MUST include the specific detected indicators: {indicators}.]
+
+#### Escalation Signals
+[Describe 3 concrete indicators signalling that the operation is escalating and requires Tier-2 intervention (e.g., coordination with NATO StratCom CoE, EU Rapid Alert System, National Cyber Security Centre).]
+
+---
+
+### 5. Tactical Debunking (Post-Attack)
+
+#### Government Post #1 — Institutional Channel
+[Ready-to-post text for an official channel (e.g., @GovResponse or @NationalCyberSec), max 40 words. Must directly refute the payload: {social_pay}. Include a call-to-action to verify facts via certified sources.]
+
+#### Government Post #2 — Public Outreach
+[Text for public outreach/civic communications (more accessible tone, max 40 words). Use an analogy or verifiable fact to debunk the narrative frame without directly echoing the disinformation.]
+
+---
+
+### 6. Escalation and Inter-Agency Coordination
+
+[Specify: (a) escalation threshold to involve National Cyber Security Agencies / Media Regulators / Law Enforcement, (b) EU notification channel (EUvsDisinfo / EEAS / Rapid Alert System) if a foreign state actor is confirmed, (c) NATO StratCom COE notification if applicable to actor profile {nome}.]
+
+---

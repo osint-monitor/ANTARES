@@ -1,0 +1,50 @@
+{
+  "nome": "Spamouflage (Dragonbridge)",
+  "tipo": "Campagna di Influenza Statale Pro-Repubblica Popolare Cinese (Gaslighting/Social Division)",
+  "descrizione": "Vasta campagna d'influenza statale di matrice filo-cinese (RPC). Utilizza reti capillari di account inautentici, video generati da intelligenza artificiale con avatar sintetici e tecniche di spamming massivo per inquinare il dibattito pubblico, promuovere narrazioni di whataboutism ed erodere la credibilità del modello democratico occidentale.",
+  "vettori_comunicativi": [
+    "Migliaia di account inautentici coordinati (sockpuppets) distribuiti su tutte le principali piattaforme (X, Meta, YouTube)",
+    "Spamming massivo di commenti testuali sotto i post di leader politici e media mainstream occidentali",
+    "Produzione di video generati con Intelligenza Artificiale tramite l'uso di avatar sintetici (finti giornalisti di AI news)",
+    "Amplificazione e dirottamento di hashtag divisivi legati a proteste sociali reali nei paesi democratici"
+  ],
+  "targeting_cognitivo": "Opinione pubblica internazionale, attivisti per i diritti civili in Occidente, comunità della diaspora cinese. Mira a distrarre l'attenzione dai temi sensibili e a screditare il modello democratico.",
+  "tono_narrativo": "Paternalistico, critico, fortemente whataboutista ed elogiative. Esalta l'efficienza economica e la stabilità asiatica, enfatizzando in modo ossessivo il caos, la violenza, le tensioni razziali e l'ipocrisia morale dei paesi occidentali.",
+  "obiettivi_strategici_permanenti": [
+    "Deviare l'attenzione internazionale dalle violazioni dei diritti umani, questioni territoriali o crisi interne alla RPC",
+    "Erodere l'autorità morale e l'attrattiva del modello democratico occidentale evidenziando solo le sue crisi sociali ed elettorali",
+    "Inquinare l'ecosistema informativo social saturando i thread di discussione con contenuti spazzatura (spam) per scoraggiare il dibattito reale"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0146.007 - Automated Account Asset (Usare account con comportamento automatizzato)",
+    "T0087 - Develop Video-Based Content (Creare video falsi o fuorvianti)",
+    "T0042 - Kernel of Truth (Inserire fatti reali in narrative fuorvianti)"
+  ],
+  "vulnerabilita_operative": [
+    "Filtri anti-spam euristici e analisi comportamentale delle piattaforme per rilevare la pubblicazione simultanea di testi identici",
+    "Esposizione pubblica (Call-out) dei difetti grafici dei video sintetici (artefatti audio/video degli avatar IA) per distruggerne la credibilità",
+    "Tracciamento dei pattern temporali di pubblicazione che espongono i fusi orari e gli orari d'ufficio degli operatori statali (attribuzione)"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "L'uso dei Finti Anchor Televisivi IA (2023)",
+      "descrizione": "Spamouflage è stata una delle prime campagne statali a sfruttare l'Intelligenza Artificiale generativa. Hanno utilizzato il software commerciale Synthesia per creare finti telegiornali (brandizzati come 'Wolf News') condotti da avatar fotorealistici. I finti giornalisti denunciavano in perfetto inglese l'epidemia di armi da fuoco negli USA e l'inefficacia delle politiche di Washington, simulando un network di notizie legittimo.",
+      "fonti": [
+        {
+          "nome": "Graphika - Deepfake It Till You Make It",
+          "url": "https://graphika.com/reports/deepfake-it-till-you-make-it"
+        }
+      ]
+    },
+    {
+      "nome": "Attacchi all'Industria Mineraria Occidentale (2022)",
+      "descrizione": "La rete bot di Dragonbridge è stata mobilitata per attaccare specifiche aziende occidentali (come Lynas Rare Earths e Appia Rare Earths) concorrenti del monopolio cinese sulle terre rare. L'operazione cognitiva mascherava i bot da sedicenti 'ambientalisti texani' che protestavano contro i danni ecologici presunti delle aziende, nel tentativo di bloccarne l'espansione e mantenere la dipendenza occidentale dal mercato asiatico.",
+      "fonti": [
+        {
+          "nome": "Mandiant - Pro-PRC Info Ops Targeting Rare Earths",
+          "url": "https://cloud.google.com/blog/topics/threat-intelligence/dragonbridge-targets-rare-earths-mining-companies"
+        }
+      ]
+    }
+  ]
+}

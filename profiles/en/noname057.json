@@ -1,0 +1,54 @@
+{
+  "nome": "NoName057(16)",
+  "tipo": "Pro-Russian Hacktivist Collective (DDoS Operations / Demonstrative PsyOps)",
+  "descrizione": "A pro-Russian hacktivist collective specializing in high-impact DDoS attacks and demonstrative psychological operations (PsyOps) targeting European and transatlantic institutions. Known for the 'DDosia' project, which enables crowdsourced attacks with cryptocurrency-based incentives, it seeks to temporarily disrupt government, financial, media, transportation, and other public-facing services while amplifying perceptions of vulnerability in European and NATO digital infrastructure.",
+  "vettori_comunicativi": [
+    "Highly active multilingual Telegram channels used for attack announcements, propaganda, recruitment, and claims of responsibility",
+    "Immediate public claims of DDoS attacks accompanied by screenshots, service-status indicators, and technical metrics showing alleged disruption",
+    "Production of satirical memes, nationalist imagery, and offensive graphics designed to ridicule targeted European governments, institutions, and NATO members",
+    "Coordination of the 'DDosia' project for crowdsourced attacks through cryptocurrency incentives, public recognition, rankings, and community-driven participation"
+  ],
+  "targeting_cognitivo": "European public opinion, national and international media, cybersecurity communities, public-sector decision-makers, and citizens in NATO and EU member states. The intended effect is to create a perception that European governments and critical digital services are vulnerable, poorly defended, or unable to protect their populations from cyber disruption.",
+  "tono_narrativo": "Triumphalist, aggressive, satirical, and punitive. Mocks the perceived weakness of European cyber defenses and frames attacks as retaliation for alleged 'Russophobia', sanctions, NATO policies, and European military or financial support for Ukraine. Communications emphasize visible disruption and symbolic humiliation rather than the long-term technical impact of individual attacks.",
+  "obiettivi_strategici_permanenti": [
+    "Attract sustained attention from European media by transforming disruptive but often temporary DDoS incidents into visible political and information events",
+    "Demonstrate an alleged fragility of governmental, financial, transportation, and other public-facing digital infrastructure across EU and NATO member states",
+    "Undermine public confidence in the ability of European governments and institutions to protect essential digital services",
+    "Recruit and radicalize users willing to contribute network resources by participating in the DDosia community and its coordinated campaigns",
+    "Signal the costs of European political and military support for Ukraine by targeting institutions and services associated with governments supporting Kyiv"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0119 - Cross-Posting (Post the same content across multiple channels)",
+    "T0120.002 - Use Contests and Prizes (Incentivize participation through rewards)",
+    "T0049.005 - Conduct Swarming (Coordinate simultaneous activity by many participants)"
+  ],
+  "vulnerabilita_operative": [
+    "Adoption of resilient DDoS mitigation architectures and distributed traffic-protection services to minimize the visible impact of coordinated attacks",
+    "Media de-amplification and established reporting guidelines for European journalists to avoid unnecessarily magnifying the group's claims or attack metrics",
+    "Forensic analysis and reverse engineering of DDosia infrastructure and clients to identify command-and-control components, infrastructure dependencies, and financial channels",
+    "Cross-border intelligence sharing among European cybersecurity agencies, CERTs, law-enforcement bodies, and affected organizations to identify recurring infrastructure and operators",
+    "Rapid public communication explaining the limited operational impact of temporary DDoS incidents to prevent technical disruption from becoming broader information panic"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Attacks on Italian Institutions (2023)",
+      "descrizione": "Concurrently with Giorgia Meloni's institutional visit to Kyiv, the group unleashed a wave of DDoS attacks against Italian ministerial websites (Ministry of Defense, Foreign Affairs), banking portals, and transport companies. The operation aimed to frighten Italian public opinion and visibly punish the government for its foreign policy positions.",
+      "fonti": [
+        {
+          "nome": "Il Fatto Quotidiano",
+          "url": "https://www.ilfattoquotidiano.it/2023/02/22/attacco-informatico-contro-siti-italiani-rivendicato-da-hacker-filorussi-ritorsione-per-visita-di-meloni-a-kiev/7073953/"
+        }
+      ]
+    },
+    {
+      "nome": "DDosia Project: Cyber Mercenarism (2022-Ongoing)",
+      "descrizione": "NoName057(16) expanded the hacktivist model through 'DDosia', a voluntary client distributed through its community. Via Telegram and associated channels, participants are encouraged to install the software and contribute resources to coordinated attacks against targets in Ukraine-supporting countries, including NATO members. The model incorporates cryptocurrency-based incentives, rankings, and rewards for participation and traffic generation.",
+      "fonti": [
+        {
+          "nome": "Picus Security - DDosia Project Analysis",
+          "url": "https://www.picussecurity.com/resource/blog/how-noname05716-uses-ddosia-to-attack-nato-targets"
+        }
+      ]
+    }
+  ]
+}

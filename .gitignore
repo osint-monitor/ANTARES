@@ -1,0 +1,34 @@
+# --- Python (Flask)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv
+myvenv
+venv/
+ENV/
+.env
+/instance
+anon.session
+tailwindcss.exe
+*.exe
+*db*
+test.py
+admin_routes.py
+
+
+# --- Node.js (Tailwind) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Build / Output ---
+# Se Tailwind genera un file CSS compilato, a volte si esclude se il VPS lo rigenera
+# Ma per semplicità all'inizio puoi commentare la riga sotto
+# dist/
+
+# --- IDE / Sistema ---
+.vscode/
+.idea/
+.DS_Store
+*.swp

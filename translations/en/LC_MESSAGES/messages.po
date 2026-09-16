@@ -1,0 +1,1079 @@
+# English translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR EMAIL@ADDRESS, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-09-07 11:35+0200\n"
+"PO-Revision-Date: 2026-08-31 14:30+0200\n"
+"Last-Translator: FULL NAME EMAIL@ADDRESS\n"
+"Language: en\n"
+"Language-Team: en LL@li.org\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app.py:144
+msgid "Nessun testo fornito"
+msgstr "No text provided"
+
+#: app.py:257
+msgid ""
+"Modalità Demo: impossibile avviare nuove analisi. Esplora le dashboard o "
+"la Threat Library."
+msgstr ""
+"Demo Mode: unable to start new analyses. Explore the dashboards or the "
+"Threat Library."
+
+#: app.py:276
+msgid "Testo e attore principale obbligatori"
+msgstr "Text and primary actor are required"
+
+#: app.py:277
+msgid "Compila tutti i campi obbligatori."
+msgstr "Please fill in all required fields."
+
+#: templates/about.html:3
+msgid "about_meta_title"
+msgstr "About & Contacts"
+
+#: templates/about.html:58
+msgid "about_main_title"
+msgstr "ABOUT THE PROJECT"
+
+#: templates/about.html:61
+msgid "about_main_subtitle"
+msgstr ""
+"Cognitive simulation platform for national security and countering FIMI "
+"threats."
+
+#: templates/about.html:69
+msgid "about_vision_title"
+msgstr "PROJECT VISION"
+
+#: templates/about.html:74
+msgid "about_vision_p1_tag"
+msgstr "01 // ORIGIN"
+
+#: templates/about.html:75
+msgid "about_vision_p1"
+msgstr ""
+"ANTARES (Adversarial Narrative Threat Analysis and Response Evaluation "
+"System) started as a personal project — a proof-of-concept I developed to"
+" explore new frontiers in cognitive security. More than a simple coding "
+"exercise, it's a portfolio piece and an independent research lab, built "
+"to imagine different, proactive approaches to countering disinformation."
+
+#: templates/about.html:78
+msgid "about_vision_p2_tag"
+msgstr "02 // CONTEXT"
+
+#: templates/about.html:79
+msgid "about_vision_p2"
+msgstr ""
+"Today's FIMI (Foreign Interference and Information Manipulation) "
+"campaigns rarely rely on inventing news out of thin air; far more often "
+"they weaponize real facts, manipulating narratives to widen social "
+"divides. Faced with these threats, the traditional approach is almost "
+"always reactive: fact-checking and debunking hoaxes only after the "
+"cognitive \"virus\" has already spread and the damage is done. With this "
+"project, I wanted to flip that perspective, starting from a core "
+"cybersecurity principle applied to the information ecosystem: to defeat "
+"an adversary, you first have to learn to think like one."
+
+#: templates/about.html:82
+msgid "about_vision_p3_tag"
+msgstr "03 // METHOD"
+
+#: templates/about.html:83
+msgid "about_vision_p3"
+msgstr ""
+"The application works as a genuine \"gym\" for cyber and cognitive "
+"defense. The system proactively simulates adversarial disinformation "
+"tactics, adopting the perspective of known hostile actors to understand "
+"how they might exploit, distort, or polarize a given news story. This "
+"adversarial simulation exercise is carried out with a strictly ethical "
+"and defensive purpose: the goal is not to generate disinformation, but to"
+" anticipate narrative vulnerabilities before they are exploited."
+
+#: templates/about.html:86
+msgid "about_vision_p4_tag"
+msgstr "04 // OUTPUT"
+
+#: templates/about.html:87
+msgid "about_vision_p4"
+msgstr ""
+"By anticipating in advance which \"angle\" or emotional tone an attacker "
+"might use, ANTARES closes the loop by automatically generating defensive "
+"response playbooks. In this way, artificial intelligence becomes a tool "
+"for building resilience, giving communication and security professionals "
+"what they need to prepare counter-narratives and preventive mitigation "
+"strategies."
+
+#: templates/about.html:91
+msgid "about_vision_p5"
+msgstr ""
+"This is my personal vision of how technology can help us move from a "
+"passive, perpetually-behind information defense to a strategic model "
+"grounded in anticipation and preparedness."
+
+#: templates/about.html:102
+msgid "disclaimer_title"
+msgstr "DEMONSTRATION PROJECT"
+
+#: templates/about.html:106
+msgid "disclaimer_text"
+msgstr ""
+"This app was developed as a demonstration project and proof-of-concept "
+"for defense against cognitive manipulation and FIMI (Foreign Interference"
+" and Information Manipulation). The system simulates adversarial "
+"disinformation tactics solely to anticipate narrative vulnerabilities and"
+" automatically generate defensive response playbooks."
+
+#: templates/about.html:115
+msgid "contact_title"
+msgstr "Info & Contacts"
+
+#: templates/about.html:118
+msgid "contact_desc"
+msgstr ""
+"For further information regarding the prototype, integration requests, or"
+" security inquiries:"
+
+#: templates/architecture.html:3
+msgid "System Architecture"
+msgstr "System Architecture"
+
+#: templates/architecture.html:280
+msgid "ANTARES ARCHITECTURE"
+msgstr "ANTARES ARCHITECTURE"
+
+#: templates/architecture.html:283
+msgid ""
+"Adversarial Narrative Threat Analysis & Response Evaluation System — "
+"Resource-optimized cognitive simulation framework for VPS deployment."
+msgstr "Resource-optimized cognitive simulation framework for VPS deployment."
+
+#: templates/architecture.html:292
+msgid "HOST CPU"
+msgstr "HOST CPU"
+
+#: templates/architecture.html:294
+msgid "OPTIMIZED CONTEXT WINDOW"
+msgstr "OPTIMIZED CONTEXT WINDOW"
+
+#: templates/architecture.html:300
+msgid "RAM ALLOCATION"
+msgstr "RAM ALLOCATION"
+
+#: templates/architecture.html:302
+msgid "CPU INFERENCE BOUNDED"
+msgstr "CPU INFERENCE BOUNDED"
+
+#: templates/architecture.html:308
+msgid "ACCELERATION"
+msgstr "ACCELERATION"
+
+#: templates/architecture.html:309
+msgid "NO GPU"
+msgstr "NO GPU"
+
+#: templates/architecture.html:310
+msgid "QUANTIZED LLM EXECUTOR"
+msgstr "QUANTIZED LLM MODEL"
+
+#: templates/architecture.html:316
+msgid "ENVIRONMENT"
+msgstr "ENVIRONMENT"
+
+#: templates/architecture.html:317
+msgid "SECURE VPS"
+msgstr "SECURE VPS"
+
+#: templates/architecture.html:318
+msgid "ISOLATED SYSTEMD WORKER"
+msgstr "ISOLATED SYSTEMD WORKER"
+
+#: templates/architecture.html:328
+msgid "END-TO-END PIPELINE SCHEMATIC"
+msgstr "END-TO-END PIPELINE SCHEMATIC"
+
+#: templates/architecture.html:338
+msgid "INPUT & CONTEXT"
+msgstr "INPUT & CONTEXT"
+
+#: templates/architecture.html:339
+msgid "Ingestion & Prompting"
+msgstr "Ingestion & Prompting"
+
+#: templates/architecture.html:341
+msgid ""
+"Paste news or press releases. The <strong>ITA-ENG Switch</strong> "
+"dynamically selects prompts tailored to the specific vulnerabilities and "
+"interests of the target audience."
+msgstr ""
+"Paste news or press releases. The <strong>ITA-ENG Switch</strong> "
+"dynamically selects prompts tailored to the specific vulnerabilities and "
+"interests of the target audience."
+
+#: templates/architecture.html:349
+msgid "INTEL MATCHING"
+msgstr "INTEL MATCHING"
+
+#: templates/architecture.html:350
+msgid "Actor Profiling"
+msgstr "Actor Profiling"
+
+#: templates/architecture.html:352
+msgid ""
+"Profile extraction from JSON library. A <strong>Narrative "
+"Matching</strong> engine based on semantic embeddings calculates affinity"
+" with hostile actors (APT28, Doppelgänger, etc.)."
+msgstr ""
+"Profile extraction from JSON library. A <strong>Narrative "
+"Matching</strong> engine based on semantic embeddings calculates affinity"
+" with hostile actors (APT28, Doppelgänger, etc.)."
+
+#: templates/architecture.html:360
+msgid "QUEUE & DAEMON"
+msgstr "QUEUE & DAEMON"
+
+#: templates/architecture.html:361
+msgid "SQLite Queue & Systemd"
+msgstr "SQLite Queue & Systemd"
+
+#: templates/architecture.html:363
+msgid ""
+"Task saved to SQLite DB (supports multiple queuing). A <strong>Python "
+"systemd worker</strong> daemon fetches analyses in sequential FIFO mode."
+msgstr ""
+"Task saved to SQLite DB (supports multiple queuing). A <strong>Python "
+"systemd worker</strong> daemon fetches analyses in sequential FIFO mode."
+
+#: templates/architecture.html:371
+msgid "ORCHESTRATION"
+msgstr "ORCHESTRATION"
+
+#: templates/architecture.html:372
+msgid "Simulation & Export"
+msgstr "Simulation & Export"
+
+#: templates/architecture.html:374
+msgid ""
+"Sequential execution of <strong>Red Team (PSYOPS)</strong> and "
+"<strong>Blue Team (FIMI)</strong>. Polling rendering and export to PDF, "
+"STIX 2.1, and MISP."
+msgstr ""
+"Sequential execution of <strong>Red Team (PSYOPS)</strong> and "
+"<strong>Blue Team (FIMI)</strong>. Polling rendering and export to PDF, "
+"STIX 2.1, and MISP."
+
+#: templates/architecture.html:390
+msgid "Sequential Execution Logic"
+msgstr "Sequential Execution Logic"
+
+#: templates/architecture.html:397
+msgid "PHASE 1"
+msgstr "PHASE 1"
+
+#: templates/architecture.html:398
+msgid "RED TEAM SIMULATION (Weaponization)"
+msgstr "RED TEAM SIMULATION (Weaponization)"
+
+#: templates/architecture.html:401
+msgid ""
+"Simulates cognitive attacks: extracts PSYOPS objectives, target audience,"
+" social payload, DISARM techniques, and calculates JSON-formatted Risk "
+"Assessment."
+msgstr ""
+"Simulates cognitive attacks: extracts PSYOPS objectives, target audience,"
+" social payload, DISARM techniques, and calculates JSON-formatted Risk "
+"Assessment."
+
+#: templates/architecture.html:411
+msgid "PHASE 2"
+msgstr "PHASE 2"
+
+#: templates/architecture.html:412
+msgid "BLUE TEAM PLAYBOOK (FIMI Countermeasures)"
+msgstr "BLUE TEAM PLAYBOOK (FIMI Countermeasures)"
+
+#: templates/architecture.html:415
+msgid ""
+"Generates defensive response: prebunking counter-narratives, media "
+"directives, tactical debunking, resilience indicators, and inter-agency "
+"escalation."
+msgstr ""
+"Generates defensive response: prebunking counter-narratives, media "
+"directives, tactical debunking, resilience indicators, and inter-agency "
+"escalation."
+
+#: templates/architecture.html:428
+msgid "Multi-Actor Comparison Engine"
+msgstr "Multi-Actor Comparison Engine"
+
+#: templates/architecture.html:432
+msgid ""
+"Allows observing how the same news is weaponized by different hostile "
+"actors."
+msgstr ""
+"Allows observing how the same news is weaponized by different hostile "
+"actors."
+
+#: templates/architecture.html:435
+msgid ""
+"<strong>Event Cloning:</strong> Duplication of an existing task across "
+"1-3 additional actors."
+msgstr ""
+"<strong>Event Cloning:</strong> Duplication of an existing task across "
+"1-3 additional actors."
+
+#: templates/architecture.html:436
+msgid ""
+"<strong>Parallel Matrix:</strong> Side-by-side shared visualization of "
+"Red Team and Blue Playbook."
+msgstr ""
+"<strong>Parallel Matrix:</strong> Side-by-side shared visualization of "
+"Red Team and Blue Team."
+
+#: templates/architecture.html:437
+msgid ""
+"<strong>Persistence & Sync:</strong> Database saving with real-time "
+"progress status."
+msgstr ""
+"<strong>Persistence & Sync:</strong> Database saving with real-time "
+"progress status."
+
+#: templates/architecture.html:438
+msgid ""
+"<strong>Matrix Multi-Export:</strong> Complete matrix export in PDF and "
+"CSV formats."
+msgstr ""
+"<strong>Matrix Multi-Export:</strong> Complete matrix export in PDF and "
+"CSV formats."
+
+#: templates/architecture.html:449
+msgid "Interoperability & Threat Intel Export"
+msgstr "Interoperability & Threat Intel Export"
+
+#: templates/architecture.html:456
+msgid "PDF REPORT"
+msgstr "PDF REPORT"
+
+#: templates/architecture.html:457
+msgid "EXECUTIVE"
+msgstr "EXECUTIVE"
+
+#: templates/architecture.html:459
+msgid "Formatted document for operational use in security briefings."
+msgstr "Formatted document for operational use."
+
+#: templates/architecture.html:466
+msgid "STIX 2.1 JSON"
+msgstr "STIX 2.1 JSON"
+
+#: templates/architecture.html:467
+msgid "CTI STANDARD"
+msgstr "CTI STANDARD"
+
+#: templates/architecture.html:469
+msgid "JSON bundle compliant with international Threat Intelligence standards."
+msgstr "JSON bundle compliant with international Threat Intelligence standards."
+
+#: templates/architecture.html:476
+msgid "MISP EVENT"
+msgstr "MISP EVENT"
+
+#: templates/architecture.html:477
+msgid "AUTOMATED CORRELATION"
+msgstr "AUTOMATED CORRELATION"
+
+#: templates/architecture.html:479
+msgid ""
+"Structured event with native attributes and <code>microblog</code> object"
+" for automated correlation."
+msgstr ""
+"Structured event with native attributes and <code>microblog</code> object"
+" for automated correlation."
+
+#: templates/base.html:43 templates/index.html:40
+msgid "nav_simulazione"
+msgstr "Simulation"
+
+#: templates/base.html:48
+msgid "nav_dashboard"
+msgstr "Dashboard"
+
+#: templates/base.html:54
+msgid "nav_threat_library"
+msgstr "Threat Library"
+
+#: templates/base.html:59
+msgid "nav_architecture"
+msgstr "Architecture"
+
+#: templates/base.html:64
+msgid "nav_about"
+msgstr "About"
+
+#: templates/compare.html:3 templates/compare.html:316
+#: templates/dashboard.html:102
+msgid "multi_actor_comparisons"
+msgstr "Multi-Actor Comparisons"
+
+#: templates/compare.html:321 templates/status.html:76
+msgid "PDF Report"
+msgstr "PDF Report"
+
+#: templates/compare.html:326
+msgid "Export CSV"
+msgstr "Export CSV"
+
+#: templates/compare.html:331 templates/status.html:102
+msgid "Waiting..."
+msgstr "Waiting..."
+
+#: templates/compare.html:336 templates/compare.html:486
+#: templates/status.html:117
+msgid "Red Team"
+msgstr "Red Team"
+
+#: templates/compare.html:339 templates/compare.html:486
+#: templates/status.html:126
+msgid "Blue Team"
+msgstr "Blue Team"
+
+#: templates/compare.html:359 templates/status.html:164
+msgid "Risk Assessment"
+msgstr "Risk Assessment"
+
+#: templates/compare.html:360 templates/status.html:157
+msgid "PSYOPS Objectives"
+msgstr "PSYOPS Objectives"
+
+#: templates/compare.html:361 templates/intel.html:308
+#: templates/status.html:158
+msgid "Target Audience"
+msgstr "Target Audience"
+
+#: templates/compare.html:362 templates/status.html:160
+msgid "Social Payload"
+msgstr "Social Payload"
+
+#: templates/compare.html:363 templates/status.html:162
+msgid "DISARM Techniques"
+msgstr "DISARM Techniques"
+
+#: templates/compare.html:364 templates/status.html:163
+msgid "Actor Weak Spots"
+msgstr "Actor Weak Spots"
+
+#: templates/compare.html:368 templates/status.html:169
+msgid "Immediate Threat Assessment"
+msgstr "Immediate Threat Assessment"
+
+#: templates/compare.html:369 templates/status.html:170
+msgid "Strategic Counter-Narrative (Prebunking)"
+msgstr "Strategic Counter-Narrative (Prebunking)"
+
+#: templates/compare.html:370 templates/status.html:171
+msgid "Mainstream Media Directives"
+msgstr "Mainstream Media Directives"
+
+#: templates/compare.html:371 templates/status.html:172
+msgid "Digital Cleanup & Debunking Actions"
+msgstr "Digital Cleanup & Debunking Actions"
+
+#: templates/compare.html:372 templates/status.html:173
+msgid "Monitoring & Resilience Indicators"
+msgstr "Monitoring & Resilience Indicators"
+
+#: templates/compare.html:430 templates/compare.html:441
+#: templates/intel.html:317 templates/status.html:147
+msgid "N/A"
+msgstr "N/A"
+
+#: templates/dashboard.html:3
+msgid "dashboard_page_title"
+msgstr "Dashboard"
+
+#: templates/dashboard.html:89
+msgid "dashboard_title"
+msgstr "Dashboard"
+
+#: templates/dashboard.html:90
+msgid "dashboard_subtitle"
+msgstr "Cognitive analysis tasks monitoring"
+
+#: templates/dashboard.html:94
+msgid "btn_new_sim"
+msgstr "New Simulation"
+
+#: templates/dashboard.html:116
+msgid "group_label"
+msgstr "GROUP"
+
+#: templates/dashboard.html:121
+msgid "actors_label"
+msgstr "ACTORS"
+
+#: templates/dashboard.html:128
+msgid "open_matrix"
+msgstr "Open Matrix"
+
+#: templates/dashboard.html:136 templates/dashboard.html:192
+msgid "th_id"
+msgstr "ID"
+
+#: templates/dashboard.html:137 templates/dashboard.html:193
+msgid "th_status"
+msgstr "Status"
+
+#: templates/dashboard.html:138 templates/dashboard.html:194
+msgid "th_engine"
+msgstr "Engine"
+
+#: templates/dashboard.html:139 templates/dashboard.html:195
+msgid "th_actor"
+msgstr "Actor"
+
+#: templates/dashboard.html:140 templates/dashboard.html:197
+msgid "th_start"
+msgstr "Started"
+
+#: templates/dashboard.html:141 templates/dashboard.html:198
+msgid "th_end"
+msgstr "Completed"
+
+#: templates/dashboard.html:142 templates/dashboard.html:199
+msgid "th_action"
+msgstr "Action"
+
+#: templates/dashboard.html:165 templates/dashboard.html:222
+msgid "inspect_task"
+msgstr "Inspect"
+
+#: templates/dashboard.html:185
+msgid "single_tasks"
+msgstr "Single Tasks"
+
+#: templates/dashboard.html:196
+msgid "th_event"
+msgstr "Analyzed Event"
+
+#: templates/dashboard.html:236
+msgid "no_tasks_active"
+msgstr "No Active Tasks"
+
+#: templates/dashboard.html:237
+msgid "no_tasks_active_desc"
+msgstr "There are no ongoing simulations in the system."
+
+#: templates/dashboard.html:239 templates/new_task.html:318
+msgid "btn_start_simulation"
+msgstr "Start Simulation"
+
+#: templates/footer.html:7
+msgid "footer_core"
+msgstr "Core System © 2026"
+
+#: templates/footer.html:14
+msgid "footer_disclaimer"
+msgstr "Disclaimer: Educational simulation purpose."
+
+#: templates/footer.html:21
+msgid "footer_rights"
+msgstr "All rights reserved."
+
+#: templates/index.html:21
+msgid "welcome_title"
+msgstr "Welcome to <br> ANTARES"
+
+#: templates/index.html:35
+msgid ""
+"ANTARES is a cognitive simulation platform designed to anticipate and "
+"counter disinformation. It profiles hostile actors, simulates "
+"weaponization strategies, and generates FIMI response playbooks through "
+"an isolated, resource-optimized architecture."
+msgstr ""
+"ANTARES is a cognitive simulation platform designed to anticipate and "
+"counter disinformation. It profiles hostile actors, simulates "
+"weaponization strategies, and generates FIMI response playbooks through "
+"an isolated, resource-optimized architecture."
+
+#: templates/index.html:43
+msgid "View Architecture"
+msgstr "View Architecture"
+
+#: templates/index.html:48 templates/index.html:79
+msgid "01"
+msgstr "01"
+
+#: templates/index.html:48
+msgid "MATCH"
+msgstr "MATCH"
+
+#: templates/index.html:48 templates/index.html:88
+msgid "02"
+msgstr "02"
+
+#: templates/index.html:48
+msgid "SELECT ENGINE"
+msgstr "SELECT ENGINE"
+
+#: templates/index.html:48 templates/index.html:97
+msgid "03"
+msgstr "03"
+
+#: templates/index.html:48
+msgid "SIMULATE"
+msgstr "SIMULATE"
+
+#: templates/index.html:48 templates/index.html:106
+msgid "04"
+msgstr "04"
+
+#: templates/index.html:48
+msgid "EXPORT"
+msgstr "EXPORT"
+
+#: templates/index.html:70
+msgid "PIPELINE DI SISTEMA"
+msgstr "SYSTEM PIPELINE"
+
+#: templates/index.html:71
+msgid "Dal segnale alla risposta inter-agenzia"
+msgstr "From signal to inter-agency response"
+
+#: templates/index.html:73
+msgid "CODA FIFO → ELABORAZIONE SEQUENZIALE"
+msgstr "FIFO QUEUE → SEQUENTIAL PROCESSING"
+
+#: templates/index.html:81
+msgid "ACQUISIZIONE E MATCHING"
+msgstr "INGEST & MATCH"
+
+#: templates/index.html:82
+msgid ""
+"Il testo sorgente viene acquisito. Gli embedding semantici suggeriscono "
+"il profilo dell'attore ostile con la massima affinità."
+msgstr ""
+"Source text is ingested. Semantic embeddings suggest the highest-affinity"
+" hostile actor profile."
+
+#: templates/index.html:90
+msgid "SELEZIONE MOTORE"
+msgstr "ENGINE SELECT"
+
+#: templates/index.html:91
+msgid ""
+"Indirizza i task verso Gemini Cloud (alto ragionamento) o llama.cpp "
+"locale (privacy assoluta, ottimizzato per CPU)."
+msgstr ""
+"Route tasks to Gemini Cloud (high reasoning) or Local llama.cpp (absolute"
+" privacy, CPU-optimized)."
+
+#: templates/index.html:99
+msgid "SIMULAZIONE RED / BLUE"
+msgstr "RED / BLUE SIM"
+
+#: templates/index.html:100
+msgid ""
+"Il sistema orchestra la weaponization PSYOPS (Red), seguita "
+"immediatamente dalle contromisure FIMI (Blue)."
+msgstr ""
+"System orchestrates PSYOPS weaponization (Red), followed immediately by "
+"FIMI countermeasures (Blue)."
+
+#: templates/index.html:108
+msgid "CONFRONTO ED ESPORTAZIONE"
+msgstr "COMPARE & EXPORT"
+
+#: templates/index.html:109
+msgid ""
+"Clona gli eventi su più attori per un confronto a matrice. Esporta in "
+"PDF, STIX 2.1 o MISP strutturato."
+msgstr ""
+"Clone events across multiple actors for matrix comparison. Export to PDF,"
+" STIX 2.1, or structured MISP."
+
+#: templates/index.html:122
+msgid "CULTURAL PROMPTING"
+msgstr "CULTURAL PROMPTING"
+
+#: templates/index.html:122
+msgid "ITA/ENG dynamic context switch"
+msgstr "ITA/ENG dynamic context switch"
+
+#: templates/index.html:126
+msgid "DUAL ENGINE"
+msgstr "DUAL ENGINE"
+
+#: templates/index.html:126
+msgid "Gemini payload vs Local privacy"
+msgstr "Gemini payload vs Local privacy"
+
+#: templates/index.html:130
+msgid "MATRIX VIEW"
+msgstr "MATRIX VIEW"
+
+#: templates/index.html:130
+msgid "Persistent multi-actor comparison"
+msgstr "Persistent multi-actor comparison"
+
+#: templates/index.html:134
+msgid "MISP / STIX 2.1"
+msgstr "MISP / STIX 2.1"
+
+#: templates/index.html:134
+msgid "Structured macro/microblog export"
+msgstr "Structured macro/microblog export"
+
+#: templates/intel.html:3 templates/intel.html:257
+msgid "Threat Intel Library"
+msgstr "Threat Intel Library"
+
+#: templates/intel.html:271
+msgid "No profiles loaded."
+msgstr "No profiles loaded."
+
+#: templates/intel.html:281
+msgid "[!] Select an actor to extract telemetry"
+msgstr "[!] Select an actor to extract information"
+
+#: templates/intel.html:309
+msgid "Narrative Tone"
+msgstr "Narrative Tone"
+
+#: templates/intel.html:310
+msgid "Communication Vectors"
+msgstr "Communication Vectors"
+
+#: templates/intel.html:311
+msgid "Strategic Objectives"
+msgstr "Strategic Objectives"
+
+#: templates/intel.html:312
+msgid "MITRE DISARM Techniques"
+msgstr "DISARM Techniques"
+
+#: templates/intel.html:313
+msgid "Operational Vulnerabilities"
+msgstr "Operational Vulnerabilities"
+
+#: templates/intel.html:314
+msgid "Operational History"
+msgstr "Operational History"
+
+#: templates/intel.html:315
+msgid "[ No data ]"
+msgstr "[ No data ]"
+
+#: templates/intel.html:316
+msgid "No operations in archive."
+msgstr "No operations in archive."
+
+#: templates/new_task.html:140
+msgid "task_page_title"
+msgstr "New Simulation Task"
+
+#: templates/new_task.html:143
+msgid "task_page_desc"
+msgstr "Configure parameters to start a new analysis."
+
+#: templates/new_task.html:150
+msgid "demo_mode_title"
+msgstr "DEMO MODE:"
+
+#: templates/new_task.html:150
+msgid "demo_mode_desc"
+msgstr ""
+"You are in read-only mode. Generation of new tasks is disabled. To "
+"request full access, contact us at"
+
+#: templates/new_task.html:165
+msgid "news_input_label"
+msgstr "Enter News or Event"
+
+#: templates/new_task.html:169
+msgid "news_input_placeholder"
+msgstr "Enter information here..."
+
+#: templates/new_task.html:173
+msgid "demo_semantic_disabled_title"
+msgstr "Semantic embeddings calculation disabled in Demo mode"
+
+#: templates/new_task.html:174
+msgid "suggest_actor_btn"
+msgstr "Suggest Actor"
+
+#: templates/new_task.html:195
+msgid "actor_select_label"
+msgstr "Select Actor"
+
+#: templates/new_task.html:199
+msgid "actor_select_default"
+msgstr "Select an actor..."
+
+#: templates/new_task.html:212
+msgid "intel_profile_badge"
+msgstr "INTEL PROFILE"
+
+#: templates/new_task.html:214
+msgid "intel_status_standby"
+msgstr "STANDBY"
+
+#: templates/new_task.html:218
+msgid "intel_empty_desc"
+msgstr "Select an actor from the menu to load the detailed profile..."
+
+#: templates/new_task.html:227
+msgid "additional_actors_label"
+msgstr "Additional Actors"
+
+#: templates/new_task.html:230
+msgid "max_actors_warning"
+msgstr "Maximum 3 actors allowed."
+
+#: templates/new_task.html:259
+msgid "ai_model_label"
+msgstr "Select AI model"
+
+#: templates/new_task.html:269
+msgid "cloud_engine_badge"
+msgstr "CLOUD ENGINE"
+
+#: templates/new_task.html:274
+msgid "gemini_api_label"
+msgstr "Gemini API"
+
+#: templates/new_task.html:277
+msgid "gemini_api_desc"
+msgstr ""
+"High performance and complex reasoning via Google Cloud. Subject to the "
+"API's ethical and token limits."
+
+#: templates/new_task.html:291
+msgid "on_prem_node_badge"
+msgstr "ON-PREM NODE"
+
+#: templates/new_task.html:296
+msgid "local_model_label"
+msgstr "Local Model"
+
+#: templates/new_task.html:299
+msgid "local_model_desc"
+msgstr ""
+"Absolute privacy and isolated CPU processing. Optimized to operate with "
+"zero content restrictions."
+
+#: templates/new_task.html:317
+msgid "demo_start_disabled_title"
+msgstr "Access denied: Only admins can start new simulations"
+
+#: templates/new_task.html:336
+msgid "suggest_actor_empty_alert"
+msgstr "Please enter text to analyze before requesting actor suggestion."
+
+#: templates/new_task.html:343
+msgid "suggest_actor_loading"
+msgstr "Analyzing text for actor matching..."
+
+#: templates/new_task.html:360
+msgid "suggest_actor_no_result"
+msgstr "No matching actor found."
+
+#: templates/new_task.html:367
+msgid "suggest_actor_best_match"
+msgstr "Best Actor Match"
+
+#: templates/new_task.html:388
+msgid "suggest_actor_error"
+msgstr "Error suggesting actor. Please try again."
+
+#: templates/new_task.html:428
+msgid "intel_no_data_desc"
+msgstr "No details available for this actor."
+
+#: templates/new_task.html:429
+msgid "intel_status_nodata"
+msgstr "NO DATA"
+
+#: templates/new_task.html:434
+msgid "intel_status_loaded"
+msgstr "LOADED"
+
+#: templates/new_task.html:439
+msgid "actor_type_unspecified"
+msgstr "Type not specified"
+
+#: templates/new_task.html:440
+msgid "actor_desc_missing"
+msgstr "No description present in the JSON file."
+
+#: templates/status.html:55
+msgid "Task"
+msgstr "Task"
+
+#: templates/status.html:61
+msgid "WAITING"
+msgstr "WAITING"
+
+#: templates/status.html:71
+msgid "Comparative"
+msgstr "Comparative"
+
+#: templates/status.html:80
+msgid "Export STIX"
+msgstr "Export STIX"
+
+#: templates/status.html:84
+msgid "Export MISP"
+msgstr "Export MISP"
+
+#: templates/status.html:92
+msgid "Operational Context"
+msgstr "Operational Context"
+
+#: templates/status.html:95
+msgid "Actor"
+msgstr "Actor"
+
+#: templates/status.html:98
+msgid "AI Backend"
+msgstr "AI Backend"
+
+#: templates/status.html:101
+msgid "Start Time"
+msgstr "Start Time"
+
+#: templates/status.html:104
+msgid "End Time"
+msgstr "End Time"
+
+#: templates/status.html:108
+msgid "Source Text"
+msgstr "Source Text"
+
+#: templates/status.html:119
+msgid "PSYOPS Analysis — Event Weaponization"
+msgstr "PSYOPS Analysis — Event Weaponization"
+
+#: templates/status.html:128
+msgid "FIMI Counter-Playbook"
+msgstr "FIMI Counter-Playbook"
+
+#: templates/status.html:136
+msgid "WAITING FOR API SIGNAL..."
+msgstr "WAITING FOR API SIGNAL..."
+
+#: templates/status.html:145
+msgid "GEMINI ENGINE"
+msgstr "GEMINI ENGINE"
+
+#: templates/status.html:146
+msgid "LOCAL LLM"
+msgstr "LOCAL LLM"
+
+#: templates/status.html:148
+msgid "Generating Red Team (Gemini Cloud API)…"
+msgstr "Generating Red Team (Gemini Cloud API)…"
+
+#: templates/status.html:149
+msgid "Generating Red Team (Local LLM Instance)…"
+msgstr "Generating Red Team (Local LLM Instance)…"
+
+#: templates/status.html:150
+msgid "Generating Blue Team Playbook (Gemini Cloud API)…"
+msgstr "Generating Blue Team Playbook (Gemini Cloud API)…"
+
+#: templates/status.html:151
+msgid "Generating Blue Team Playbook (Local LLM Instance)…"
+msgstr "Generating Blue Team Playbook (Local LLM Instance)…"
+
+#: templates/status.html:152
+msgid "Unable to format output, but the task is completed."
+msgstr "Unable to format output, but the task is completed."
+
+#: templates/status.html:153
+msgid "Critical Error"
+msgstr "Critical Error"
+
+#: templates/status.html:154
+msgid "Unknown error"
+msgstr "Unknown error"
+
+#: templates/status.html:159
+msgid "Products and Tactics"
+msgstr "Products and Tactics"
+
+#: templates/status.html:161
+msgid "Amplification Indicators"
+msgstr "Amplification Indicators"
+
+#: templates/status.html:165
+msgid "Virulence"
+msgstr "Virulence"
+
+#: templates/status.html:166
+msgid "Strategic Impact"
+msgstr "Strategic Impact"
+
+#~ msgid "about_eyebrow"
+#~ msgstr "SYSTEM INFORMATION & CONTACTS"
+
+#~ msgid "disclaimer_subtitle"
+#~ msgstr "Defensive Adversarial Simulation"
+
+#~ msgid "about_system_architecture_title"
+#~ msgstr "System Architecture"
+
+#~ msgid "arch_widget_models"
+#~ msgstr "ANALYTICAL ENGINES"
+
+#~ msgid "arch_widget_framework"
+#~ msgstr "INTEL FRAMEWORKS"
+
+#~ msgid "arch_widget_export"
+#~ msgstr "EXPORT STANDARDS"
+
+#~ msgid "about_redteam_title"
+#~ msgstr "Red Team Simulation"
+
+#~ msgid "about_redteam_desc"
+#~ msgstr ""
+#~ "Evaluates cognitive weaponization of events,"
+#~ " mapping attack vectors, PSYOPS targets,"
+#~ " and manipulation techniques to DISARM."
+
+#~ msgid "about_blueteam_title"
+#~ msgstr "Blue Team Playbook"
+
+#~ msgid "about_blueteam_desc"
+#~ msgstr ""
+#~ "Generates counter-narrative strategies, OSINT"
+#~ " plans, tactical debunking actions, and "
+#~ "resilience indicators for operational "
+#~ "response."
+
+#~ msgid "contact_official_channel"
+#~ msgstr "OFFICIAL CONTACT CHANNEL"
+
+#~ msgid "SYSTEM ARCHITECTURE & OPERATIONAL FLOW"
+#~ msgstr "SYSTEM ARCHITECTURE & OPERATIONAL FLOW"
+
+#~ msgid "FIFO WORKER PIPELINE"
+#~ msgstr "FIFO WORKER PIPELINE"
+
+#~ msgid "DEFENSIVE ADVERSARIAL SIMULATION"
+#~ msgstr "DEFENSIVE ADVERSARIAL SIMULATION"
+
+#~ msgid "latency_low"
+#~ msgstr "LATENCY: LOW"
+
+#~ msgid "air_gapped_badge"
+#~ msgstr "AIR-GAPPED / PRIVATE"

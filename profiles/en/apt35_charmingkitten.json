@@ -1,0 +1,47 @@
+{
+  "nome": "APT35 (Charming Kitten / Phosphorus / Mint Sandstorm)",
+  "tipo": "Iranian State-Sponsored - IRGC Intelligence Organization (Cognitive Influence & Hack-and-Leak)",
+  "descrizione": "Threat actor linked to Iran's Islamic Revolutionary Guard Corps (IRGC) Intelligence Organization. Specializes in long-term social engineering, credential-harvesting spear-phishing against high-value individuals, and hack-and-leak operations combined with sockpuppet-driven influence campaigns. Its objectives center on retaliating against perceived adversaries of the Islamic Republic, discrediting opposition and diaspora movements, and shaping Western narratives on Iran's nuclear program, regional proxies, and sanctions policy.",
+  "vettori_comunicativi": [
+    "Long-term, highly personalized spear-phishing via fake journalist, academic, or think-tank personas built over weeks or months (relationship-building before payload delivery)",
+    "Sockpuppet networks impersonating Western/Israeli activists, journalists, and policy experts on social media to inject narratives into foreign-policy and diaspora discourse",
+    "Hack-and-leak operations targeting dissidents, journalists, and former officials, with selective release of exfiltrated material through fabricated 'leak' or 'hacktivist' fronts",
+    "Coordinated inauthentic networks amplifying content on X, Telegram, and Instagram to target Iranian diaspora, Israeli audiences, and Western policy communities"
+  ],
+  "targeting_cognitivo": "Iranian diaspora and opposition movements abroad, Israeli political and military commentary audiences, Western think-tank and policy analysts covering Iran/Middle East, journalists and academics researching the region, and polarizable audiences around the Iran nuclear file, sanctions, and regional conflicts (Gaza, Lebanon, Yemen).",
+  "tono_narrativo": "Patient, relational, and trust-building in the initial approach (mimicking legitimate journalistic or academic outreach); shifts to victimized, morally indignant, and anti-imperialist framing in overt influence content. Portrays Iran as a besieged actor resisting Western/Israeli aggression, while framing domestic dissidents and exiled opposition figures as foreign-manipulated or illegitimate.",
+  "obiettivi_strategici_permanenti": [
+    "Discredit and fragment Iranian diaspora opposition movements and exiled dissident networks",
+    "Shape Western policy discourse on the Iran nuclear program, sanctions relief, and regional deterrence in directions favorable to Tehran",
+    "Undermine trust between Western governments and Israeli security/intelligence narratives regarding Iranian activity",
+    "Retaliate against individuals and organizations (journalists, researchers, former officials) perceived as hostile to the Islamic Republic",
+    "Exploit regional conflict escalations (Gaza, Lebanon, Red Sea) to amplify anti-Western and anti-Israeli narratives among sympathetic audiences"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0143.002 - Fabricated Persona (Build long-term fake journalist/academic identities for elicitation and phishing)",
+    "T0146 - Leverage Echo Chambers/Filter Bubbles (Seed content into pre-existing anti-Western or anti-Israeli online communities)",
+    "T0097.100 - Bot Persona (Deploy coordinated inauthentic accounts for narrative amplification)",
+    "T0095 - Develop Owned Media Assets (Fabricated hacktivist or leak platforms to launder exfiltrated material)",
+    "T0083 - Integrate Target Audience Vulnerabilities into Narrative (Frame content around diaspora grievances, sanctions hardship, and regional conflict trauma)"
+  ],
+  "vulnerabilita_operative": [
+    "Long operational timelines (weeks to months of relationship-building) create wide detection windows for defensive cyber-hygiene and out-of-band identity verification",
+    "Reuse of infrastructure, phishing kits, and persona photos across campaigns enables cross-referencing and rapid attribution by threat intelligence teams",
+    "Heavy reliance on credential-harvesting rather than zero-days makes multi-factor authentication and phishing-resistant credentials highly effective countermeasures",
+    "Sockpuppet networks are vulnerable to coordinated inauthentic behavior detection (posting pattern analysis, account creation clustering) by platform trust & safety teams",
+    "Overt narrative content often contradicts verifiable regional reporting, making rapid fact-based rebuttal effective before narratives consolidate in diaspora communities"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Sockpuppet Network Targeting Diaspora and Policy Analysts (2021-2023)",
+      "descrizione": "Meta and independent researchers identified extensive Charming Kitten-linked sockpuppet networks posing as journalists, recruiters, and NGO representatives to build trust relationships with Iranian dissidents, Western academics, and policy analysts before delivering malware or credential-phishing links, alongside parallel influence content targeting diaspora audiences on the legitimacy of exiled opposition figures.",
+      "fonti": [
+        
+        {
+          "nome": "Google TAG - Iranian government-backed actors",
+          "url": "https://blog.google/threat-analysis-group/countering-threats-iran/"
+        }
+      ]
+    }
+  ]
+}

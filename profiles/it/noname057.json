@@ -1,0 +1,50 @@
+{
+  "nome": "NoName057(16)",
+  "tipo": "Collettivo Hacktivista Pro-Russo (Operazioni DDoS / PsyOps Dimostrative)",
+  "descrizione": "Collettivo hacktivista filo-russo specializzato in attacchi DDoS ad alto impatto mediatico e operazioni psicologiche (PsyOps). Famoso per il progetto 'DDosia' che incentiva il crowdsourcing degli attacchi tramite criptovalute, mira a bloccare temporaneamente portali governativi, bancari e di trasporto per esagerare la percezione di fragilità delle infrastrutture occidentali.",
+  "vettori_comunicativi": [
+    "Canali Telegram multilingua altamente attivi dedicati alla propaganda d'assalto",
+    "Rivendicazioni immediate degli attacchi DDoS corredate da screenshot di siti offline e metriche di check-host",
+    "Produzione di meme satirici e grafiche offensive (es. l'orso russo) per ridicolizzare le istituzioni colpite",
+    "Coordinamento del progetto 'DDosia' per il crowdsourcing degli attacchi tramite incentivi economici in criptovalute"
+  ],
+  "targeting_cognitivo": "Opinione pubblica occidentale, media nazionali specializzati e generalisti, decisori politici locali. L'obiettivo è generare una percezione di vulnerabilità sistemica e inefficienza difensiva.",
+  "tono_narrativo": "Trionfalistico, aggressivo, satirico e punitivo. Schernisce l'inefficienza delle difese cyber occidentali e giustifica le azioni come ritorsione/punizione per la presunta 'Russofobia' e per l'invio di aiuti militari.",
+  "obiettivi_strategici_permanenti": [
+    "Monopolizzare l'attenzione dei media occidentali trasformando attacchi DDoS (tecnicamente superficiali) in casi di panico informativo",
+    "Dimostrare una presunta fragilità delle infrastrutture digitali governative, bancarie e di trasporto dei paesi target",
+    "Reclutare e radicalizzare utenti disposti a cedere la propria banda di rete partecipando alla botnet comunitaria DDosia"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0119 - Cross-Posting (Diffondere lo stesso contenuto su più canali)",
+    "T0120.002 - Use Contests and Prizes (Incentivare la partecipazione con premi)",
+    "T0049.005 - Conduct Swarming (Coordinare attività simultanee di molti partecipanti)"
+  ],
+  "vulnerabilita_operative": [
+    "Adozione di solide architetture di mitigazione DDoS (Anycast, Cloudflare, Akamai) che azzerano l'impatto visivo dell'attacco",
+    "De-amplificazione mediatica: linee guida ai giornalisti nazionali per non dare copertura e visibilità alle rivendicazioni del gruppo",
+    "Analisi forense e reverse engineering dei client DDosia per isolare i server di comando e controllo (C2) e bloccare i pagamenti"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Attacchi alle Istituzioni Italiane (2023)",
+      "descrizione": "In concomitanza con la visita istituzionale di Giorgia Meloni a Kiev, il gruppo ha scatenato un'ondata di attacchi DDoS contro siti ministeriali italiani (Ministero della Difesa, degli Esteri), portali bancari e aziende di trasporto. L'operazione mirava a spaventare l'opinione pubblica italiana e punire visibilmente il governo per le sue posizioni in politica estera.",
+      "fonti": [
+        {
+          "nome": "Il Fatto Quotidiano",
+          "url": "https://www.ilfattoquotidiano.it/2023/02/22/attacco-informatico-contro-siti-italiani-rivendicato-da-hacker-filorussi-ritorsione-per-visita-di-meloni-a-kiev/7073953/"
+        }
+      ]
+    },
+    {
+      "nome": "Progetto DDosia: Mercenarismo Cyber (2022-In corso)",
+      "descrizione": "NoName057(16) ha rivoluzionato il panorama hacktivista introducendo 'DDosia', un malware volontario. Tramite Telegram, offrono pagamenti in criptovalute agli utenti che installano questo tool sui propri PC per partecipare agli attacchi contro obiettivi NATO. La gamification prevede classifiche pubbliche e bonus in denaro per gli utenti che generano più traffico dannoso.",
+      "fonti": [
+        {
+          "nome": "Picus Security - DDosia Project Analysis",
+          "url": "https://www.picussecurity.com/resource/blog/how-noname05716-uses-ddosia-to-attack-nato-targets"
+        }
+      ]
+    }
+  ]
+}

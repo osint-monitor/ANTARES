@@ -1,0 +1,46 @@
+{
+  "nome": "APT35 (Charming Kitten / Phosphorus / Mint Sandstorm)",
+  "descrizione": "Unità di minaccia legata all'Organizzazione Intelligence del Corpo delle Guardie della Rivoluzione Islamica (IRGC) iraniano. Specializzata in ingegneria sociale a lungo termine, spear-phishing mirato a individui di alto valore per la raccolta di credenziali, e operazioni di hack-and-leak combinate con campagne di influenza tramite reti di account fittizi (sockpuppet). I suoi obiettivi sono la ritorsione contro presunti avversari della Repubblica Islamica, la delegittimazione dei movimenti di opposizione e della diaspora, e l'orientamento della narrativa occidentale su programma nucleare, proxy regionali e sanzioni.",
+  "tipo": "Intelligence dei Guardiani della Rivoluzione iraniani - IRGC (Influenza Cognitiva e Hack-and-Leak)",
+  "vettori_comunicativi": [
+    "Spear-phishing altamente personalizzato e prolungato nel tempo, tramite finte identità di giornalisti, accademici o analisti costruite in settimane o mesi (costruzione di fiducia prima della consegna del payload)",
+    "Reti di account fittizi (sockpuppet) che impersonano attivisti, giornalisti ed esperti di policy occidentali/israeliani per iniettare narrative nel dibattito di politica estera e nella diaspora",
+    "Operazioni di hack-and-leak contro dissidenti, giornalisti ed ex funzionari, con rilascio selettivo di materiale esfiltrato tramite finti fronti 'hacktivisti' o di leak",
+    "Reti coordinate di comportamento inautentico che amplificano contenuti su X, Telegram e Instagram per colpire la diaspora iraniana, il pubblico israeliano e la comunità di policy occidentale"
+  ],
+  "targeting_cognitivo": "Diaspora iraniana e movimenti di opposizione all'estero, pubblico israeliano di commentatori politici e militari, think-tank occidentali e analisti di policy che si occupano di Iran/Medio Oriente, giornalisti e accademici che studiano la regione, ed elettorato polarizzabile sui temi del dossier nucleare iraniano, delle sanzioni e dei conflitti regionali (Gaza, Libano, Yemen).",
+  "tono_narrativo": "Paziente, relazionale e orientato alla costruzione di fiducia nell'approccio iniziale (imitando un legittimo contatto giornalistico o accademico); si trasforma in un registro vittimistico, moralmente indignato e anti-imperialista nei contenuti di influenza espliciti. Ritrae l'Iran come un attore assediato che resiste all'aggressione occidentale/israeliana, mentre inquadra i dissidenti interni e le figure dell'opposizione in esilio come manipolati dall'estero o illegittimi.",
+  "obiettivi_strategici_permanenti": [
+    "Delegittimare e frammentare i movimenti di opposizione della diaspora iraniana e le reti dissidenti in esilio",
+    "Orientare il dibattito politico occidentale sul programma nucleare iraniano, l'allentamento delle sanzioni e la deterrenza regionale in direzioni favorevoli a Teheran",
+    "Minare la fiducia tra i governi occidentali e le narrative di sicurezza/intelligence israeliane riguardo l'attività iraniana",
+    "Attuare ritorsioni contro individui e organizzazioni (giornalisti, ricercatori, ex funzionari) percepiti come ostili alla Repubblica Islamica",
+    "Sfruttare l'escalation dei conflitti regionali (Gaza, Libano, Mar Rosso) per amplificare narrative anti-occidentali e anti-israeliane presso pubblici sensibili"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0143.002 - Fabricated Persona (Costruire identità fittizie di giornalisti/accademici a lungo termine per elicitazione e phishing)",
+    "T0146 - Leverage Echo Chambers/Filter Bubbles (Seminare contenuti in community online anti-occidentali o anti-israeliane preesistenti)",
+    "T0097.100 - Bot Persona (Impiegare account inautentici coordinati per l'amplificazione narrativa)",
+    "T0095 - Develop Owned Media Assets (Piattaforme fittizie di leak o hacktivismo per riciclare materiale esfiltrato)",
+    "T0083 - Integrate Target Audience Vulnerabilities into Narrative (Inquadrare i contenuti attorno alle rimostranze della diaspora, alle difficoltà legate alle sanzioni e ai traumi dei conflitti regionali)"
+  ],
+  "vulnerabilita_operative": [
+    "I lunghi tempi operativi (settimane o mesi di costruzione della relazione) creano ampie finestre di rilevamento per l'igiene informatica difensiva e la verifica dell'identità fuori banda",
+    "Il riutilizzo di infrastrutture, kit di phishing e foto delle identità fittizie tra diverse campagne consente il cross-referencing e un'attribuzione rapida da parte dei team di threat intelligence",
+    "La forte dipendenza dalla raccolta di credenziali piuttosto che da vulnerabilità zero-day rende l'autenticazione a più fattori e le credenziali resistenti al phishing contromisure molto efficaci",
+    "Le reti di account fittizi sono vulnerabili al rilevamento di comportamento inautentico coordinato (analisi dei pattern di pubblicazione, clustering nella creazione di account) da parte dei team trust & safety delle piattaforme",
+    "I contenuti di influenza espliciti contraddicono spesso la copertura giornalistica regionale verificabile, rendendo efficace una rapida confutazione basata sui fatti prima che le narrative si consolidino nelle comunità della diaspora"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Rete di Account Fittizi contro Diaspora e Analisti di Policy (2021-2023)",
+      "descrizione": "Meta e ricercatori indipendenti hanno identificato estese reti di sockpuppet riconducibili a Charming Kitten che si spacciavano per giornalisti, recruiter e rappresentanti di ONG per costruire relazioni di fiducia con dissidenti iraniani, accademici occidentali e analisti di policy, prima di consegnare malware o link di phishing per la raccolta di credenziali, insieme a contenuti di influenza paralleli rivolti alla diaspora sulla legittimità delle figure dell'opposizione in esilio.",
+      "fonti": [
+        {
+          "nome": "Google TAG - Iranian government-backed actors",
+          "url": "https://blog.google/threat-analysis-group/countering-threats-iran/"
+        }
+      ]
+    }
+  ]
+}

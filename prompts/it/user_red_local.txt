@@ -1,0 +1,12 @@
+ATTACCO: {nome} | EVENTO: {fact_text}
+
+Genera JSON con queste 9 chiavi (stringhe brevi, niente oggetti annidati):
+
+"psyops_objectives": "Obiettivo PSYOPS e cambiamento comportamentale (max 2 frasi)",
+"target_audience_analysis": "TA italiana e vulnerabilità psicosociali (max 2 frasi)",
+"product_development": "3 azioni tattiche, elenco puntato",
+"weak_spots": "Punto debole attore in questo scenario (1 frase)",
+"social_payload": "Post esempio (Telegram/X, max 30 parole, titolo clickbait aggressivo)",
+"indicators_of_influence": "3 hashtag o parole chiave specifiche",
+"disarm_techniques": "Tecniche DISARM/AMITT applicabili (codici e nomi)",
+"risk_assessment": "Virulenza X/5, Impatto Y/5, motivazione in 1 riga"

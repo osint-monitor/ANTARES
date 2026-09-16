@@ -1,0 +1,51 @@
+{
+  "nome": "Ghostwriter (UNC1151)",
+  "tipo": "Operazione di Information Warfare, Compromissione Cyber e False Flag",
+  "descrizione": "Operazione di guerra informativa e cyber-spionaggio di matrice filo-bielorussa e russa. Specializzata nell'hackeraggio di CMS di testate giornalistiche locali, nella falsificazione di lettere ufficiali e nella creazione di finti casi di cronaca, mira a minare la fiducia nelle forze armate NATO e a provocare attriti diplomatici tra nazioni alleate.",
+  "vettori_comunicativi": [
+    "Compromissione cyber di CMS (Content Management System) di siti web di notizie locali e regionali",
+    "Fabbricazione e diffusione di false lettere ufficiali di ministeri, comandi militari o enti di difesa",
+    "Rilascio di falsi articoli di cronaca nera relativi a presunti crimini o incidenti commessi da truppe alleate",
+    "Infiltrazione cognitiva in gruppi social geografici (Facebook, Telegram) e forum cittadini"
+  ],
+  "targeting_cognitivo": "Popolazione civile dei paesi confinanti con aree di crisi o nazioni che ospitano truppe, basi o esercitazioni NATO. L'obiettivo è creare indignazione morale, panico e ostilità locale contro gli alleati.",
+  "tono_narrativo": "Fabbricato, indignato, provocatorio e urgente. Utilizza storie scioccanti, scandalistiche e inventate (es. 'soldati NATO ubriachi investono un civile locale') presentandole come notizie censurate dai media mainstream.",
+  "obiettivi_strategici_permanenti": [
+    "Minare la fiducia della popolazione locale nella presenza militare alleata e nei trattati di mutua difesa",
+    "Creare attrito diplomatico e incidenti d'opinione pubblica tra i paesi ospitanti e le forze militari estere",
+    "Compromettere l'integrità e la credibilità dei canali di informazione regionali e locali tramite attacchi informatici"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0011 - Compromise Legitimate Accounts (Compromettere account legittimi per diffondere contenuti)",
+    "T0085.002 - Develop False or Altered Documents (Creare documenti falsi o modificati)",
+    "T0085.003 - Develop Inauthentic News Articles (Creare articoli di notizie falsi)"
+  ],
+  "vulnerabilita_operative": [
+    "Incident Response cyber restrittivo e monitoraggio dei log dei CMS per ripristinare immediatamente i testi originali",
+    "Smentita tecnica e forense istantanea (Fact-checking di Stato) da parte dei Ministeri della Difesa coinvolti",
+    "Tracciamento e attribuzione pubblica dell'attacco informatico per derubricare l'evento a mera operazione ostile estera"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Campagna Anti-NATO in Lituania (2020)",
+      "descrizione": "Durante la pandemia, gli operatori di UNC1151 hanno hackerato diversi portali di notizie lituani inserendo finti articoli. Le news falsificate affermavano che un comandante delle truppe NATO aveva contratto il COVID-19 e lo stava diffondendo tra la popolazione civile. La notizia è stata supportata da finte email inviate ai ministeri per generare il caos istituzionale e alimentare il risentimento locale verso l'Alleanza Atlantica.",
+      "fonti": [
+        {
+          "nome": "Mandiant - Ghostwriter InfoOps",
+          "url": "https://cloud.google.com/blog/topics/threat-intelligence/unc1151-linked-to-belarus-government/"
+        }
+      ]
+    },
+    {
+      "nome": "Hacking dei Politici Polacchi (2021)",
+      "descrizione": "L'attore ha ottenuto l'accesso non autorizzato agli account di posta e ai profili social di decine di politici polacchi di alto profilo, di vari schieramenti. Gli account sono stati usati per pubblicare messaggi radicali contro i migranti, contro gli Stati Uniti e per screditare la tenuta diplomatica di Varsavia, costringendo il governo a continue smentite d'emergenza.",
+      "fonti": [
+        {
+          "nome": "VSquare - Hack and Leak scandal in Polonia",
+          "url": "https://vsquare.org/behind-the-hack-and-leak-scandal-in-poland/"
+        }
+      ]
+    }
+  ]
+  
+}

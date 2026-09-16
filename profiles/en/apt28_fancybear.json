@@ -1,0 +1,63 @@
+{
+  "nome": "APT28 (Fancy Bear / STRONTIUM)",
+  "tipo": "Russian Military Intelligence - GRU (State-Sponsored Hack-and-Leak)",
+  "descrizione": "APT unit linked to Russian military intelligence (GRU). Specializes in high-profile hack-and-leak, spear-phishing, and cognitive subversion operations aimed at weakening European and transatlantic democratic institutions, undermining trust in public authorities, and exploiting divisions over security, foreign policy, migration, elections, and support for Ukraine.",
+  "vettori_comunicativi": [
+    "Strategic and manipulated leaks (Hack & Leak) targeting European media, political institutions, and international press",
+    "Fake investigative journalism and whistleblowing platforms (e.g., fraudulent WikiLeaks-style clones) used to legitimize selectively released information",
+    "Cognitive infiltration via social media accounts posing as European analysts, journalists, activists, or independent reporters",
+    "High-level spear-phishing operations converted into coordinated political scandals involving European governments, EU institutions, NATO, and national political parties"
+  ],
+  "targeting_cognitivo": "European political leadership, EU institutions and member-state governments, NATO and transatlantic security structures, defense and foreign-policy communities, journalists and policy analysts, and polarizable electorates during elections or major geopolitical crises.",
+  "tono_narrativo": "Subtle, pseudo-objective, authoritative, and conspiratorial. Employs language typical of investigative journalism, political commentary, and intelligence reporting to present genuine yet stolen, selectively edited, or decontextualized documents, portraying European and transatlantic institutions as corrupt, incompetent, manipulated, or fundamentally divided.",
+  "obiettivi_strategici_permanenti": [
+    "Undermine the legitimacy and public trust of European democratic institutions and electoral processes",
+    "Weaken cohesion between EU member states and the broader NATO and transatlantic security community",
+    "Disrupt European governmental decision-making through information shocks, scandals, and politically divisive disclosures",
+    "Exacerbate internal European disagreements over defense, sanctions, migration, foreign policy, and support for Ukraine"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0095 - Develop Owned Media Assets (Create own channels for dissemination)",
+    "T0117 - Attract Traditional Media (Attract attention from traditional press)",
+    "T0143.002 - Fabricated Persona (Create a convincing fictional identity)",
+    "T0143.003 - Impersonated Persona (Use another person's identity)",
+    "T0097.104 - Hacktivist Persona (Pose as a hacktivist identity)"
+  ],
+  "vulnerabilita_operative": [
+    "Strict cyber hygiene and proactive blocking of phishing campaigns targeting European political parties, institutions, media, and public-sector organizations",
+    "Rapid and coordinated attribution of intelligence operations by European and allied cybersecurity and intelligence agencies",
+    "Media literacy and verification protocols among European news organizations to prevent amplification of unverified leaks and fabricated material",
+    "Cross-border information-sharing mechanisms capable of identifying coordinated influence operations across multiple European countries and languages",
+    "Pre-established communication protocols for governments and institutions to respond rapidly to politically sensitive leaks before manipulated narratives gain traction"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Macron Leaks (2017 French Presidential Election)",
+      "descrizione": "Two days prior to the French presidential runoff, APT28 leaked 9 gigabytes of internal emails from Emmanuel Macron's campaign. The operation sought to benefit opposing candidate Marine Le Pen. Authentic documents were mixed with crude fabrications (forgeries) to fabricate non-existent offshore account scandals, exploiting a 'Hack-and-Leak' technique during the mandatory electoral blackout period when French media were legally restricted from reporting or verifying news.",
+      "fonti": [
+        {
+          "nome": "Wikipedia - Macron email leaks",
+          "url": "https://en.wikipedia.org/wiki/2017_Macron_e-mail_leaks"
+        },
+        {
+          "nome": "Berlin Policy Journal - Macron leaks",
+          "url": "https://berlinpolicyjournal.com/lessons-of-macronleaks/"
+        }
+      ]
+    },
+    {
+      "nome": "DNC Cyberattack (2016 US Elections)",
+      "descrizione": "Through targeted spear-phishing campaigns, the actor breached the US Democratic National Committee (DNC) servers. Exfiltrated emails were subsequently passed to WikiLeaks and distributed via fake online personas 'Guccifer 2.0' and 'DCLeaks'. The objective was to induce deep disillusionment among democratic voters and fuel narratives of internal party corruption.",
+      "fonti": [
+        {
+          "nome": "Wikipedia - DNC Cyberattack",
+          "url": "https://en.wikipedia.org/wiki/Democratic_National_Committee_cyber_attacks"
+        },
+        {
+          "nome": "The Guardian - DNC email leak",
+          "url": "https://www.theguardian.com/technology/2016/jul/26/dnc-email-leak-russian-hack-guccifer-2"
+        }
+      ]
+    }
+  ]
+}

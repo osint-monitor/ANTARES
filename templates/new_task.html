@@ -1,0 +1,470 @@
+{% extends "base.html" %}
+
+{% block title %}ANTARES - {% if current_locale == 'en' %}New Simulation{% else %}Nuova Simulazione{% endif %}{% endblock %}
+
+{% block content %}
+<style>
+    .ai-card-input {
+        display: none;
+    }
+
+    .ai-card-label {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        cursor: pointer;
+        background: rgba(8, 16, 40, 0.6);
+        border: 1px solid var(--border-color, rgba(0, 240, 255, 0.15));
+        border-radius: 10px;
+        padding: 1.25rem;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ai-card-label:hover {
+        border-color: rgba(0, 240, 255, 0.4);
+        background: rgba(14, 28, 64, 0.7);
+        transform: translateY(-2px);
+    }
+
+    #modelGemini:checked + .ai-card-label {
+        background: linear-gradient(135deg, rgba(0, 212, 255, 0.12) 0%, rgba(10, 25, 55, 0.85) 100%);
+        border-color: #00f0ff;
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.25), inset 0 0 12px rgba(0, 240, 255, 0.08);
+    }
+
+    #modelLocal:checked + .ai-card-label {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(10, 25, 55, 0.85) 100%);
+        border-color: #10b981;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.25), inset 0 0 12px rgba(16, 185, 129, 0.08);
+    }
+
+    .ai-card-label .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    #modelGemini:checked + .ai-card-label .status-dot {
+        background-color: #00f0ff;
+        box-shadow: 0 0 8px #00f0ff;
+    }
+
+    #modelLocal:checked + .ai-card-label .status-dot {
+        background-color: #10b981;
+        box-shadow: 0 0 8px #10b981;
+    }
+
+    .actor-chip-item {
+        background: rgba(10, 22, 50, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 6px;
+        padding: 0.5rem 0.75rem;
+        transition: all 0.2s ease;
+    }
+
+    .actor-chip-item:hover {
+        background: rgba(18, 36, 78, 0.6);
+        border-color: rgba(0, 240, 255, 0.3);
+    }
+
+    .cyber-scroll::-webkit-scrollbar {
+        width: 5px;
+    }
+    .cyber-scroll::-webkit-scrollbar-track {
+        background: rgba(5, 12, 30, 0.5);
+        border-radius: 4px;
+    }
+    .cyber-scroll::-webkit-scrollbar-thumb {
+        background: rgba(0, 240, 255, 0.3);
+        border-radius: 4px;
+    }
+    .cyber-scroll::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 240, 255, 0.6);
+    }
+
+    .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.25), transparent);
+        margin: 2.25rem 0;
+    }
+
+    .cyber-badge {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+        padding: 0.3em 0.6em;
+        border-radius: 4px;
+        text-transform: uppercase;
+    }
+
+    #suggestionList li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.3rem 0;
+        font-size: 0.8rem;
+        font-family: var(--font-mono, monospace);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    #suggestionList li:last-child {
+        border-bottom: none;
+    }
+    #suggestionList li .suggestion-rank {
+        color: var(--text-secondary, #8fa1c7);
+        margin-right: 8px;
+    }
+    #suggestionList li.is-best {
+        color: #fff;
+    }
+    #suggestionList li .suggestion-score {
+        color: #00f0ff;
+    }
+</style>
+
+<div class="row justify-content-center my-4">
+    <div class="col-xl-11 col-lg-12">
+        
+        <!-- Header Card -->
+        <div class="cyber-card scanner-container text-center py-4 mb-4">
+            
+            <h1 class="display-6 tech-header glow-cyan mb-2">
+                {{ _('task_page_title') }}
+            </h1>
+            <p class="text-secondary mx-auto mb-0" style="max-width: 650px; font-size: 0.9rem;">
+                {{ _('task_page_desc') }}
+            </p>
+        </div>
+
+        {% if not is_admin %}
+        <div class="alert text-center mb-4 mono" style="background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.4); color: #00f0ff; border-radius: 10px;">
+            <i class="fa-solid fa-shield-halved me-2"></i>
+            <strong>{{ _('demo_mode_title') }}</strong> {{ _('demo_mode_desc') }}
+            <a href="mailto:info.osintmonitor@gmail.com" class="mono text-info fw-bold text-decoration-none" style="font-size: 0.95rem;">
+                                info.osintmonitor@gmail.com
+                            </a>
+        </div>
+        {% endif %}
+
+        <!-- Simulation Form Card -->
+        <div class="cyber-card p-4 p-md-5">
+            <form method="POST" action="{{ url_for('new_task') }}">
+                
+                <!-- SEZIONE 1: INPUT NOTIZIA / EVENTO -->
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <label for="news_text" class="form-label-cyber fs-6 m-0">
+                            <i class="fa-solid fa-database text-info me-2"></i>{{ _('news_input_label') }}
+                        </label>
+                        
+                    </div>
+                    <textarea class="form-control form-cyber p-3" id="news_text" name="news_text" rows="5" placeholder="{{ _('news_input_placeholder') }}" required style="resize: vertical; font-size: 0.95rem; line-height: 1.5;"></textarea>
+
+                    <div class="d-flex justify-content-end mt-2">
+                        <button type="button" id="btnSuggestActor" class="btn btn-sm btn-outline-info mono" onclick="getActorSuggestion()" 
+                        {% if not is_admin %}disabled title="{{ _('demo_semantic_disabled_title') }}"{% endif %}>
+                        <i class="fa-solid fa-user-secret me-1"></i> {{ _('suggest_actor_btn') }}
+                    </button>
+                    </div>
+
+                    <!-- SCHEDA RISULTATI ANALISI DI AFFINITA' -->
+                    <div id="suggestionBox" class="mt-3 p-3 rounded" style="display:none; background: rgba(5, 12, 28, 0.85); border: 1px dashed var(--border-color, rgba(0, 240, 255, 0.3));">
+                        <div id="suggestionTop" class="mono mb-2" style="font-size: 0.82rem;"></div>
+                        <ul id="suggestionList" class="list-unstyled mb-0"></ul>
+                    </div>
+
+                </div>
+
+                <div class="section-divider"></div>
+
+
+
+                <!-- SEZIONE 2: PROFILAZIONE ATTORI -->
+                <div class="row g-4">
+                    <!-- Attore Principale -->
+                    <div class="col-lg-6">
+                        <label for="primaryActorSelect" class="form-label-cyber mb-2 fs-6">
+                            <i class="fa-solid fa-user-secret text-info me-2"></i>{{ _('actor_select_label') }}
+                        </label>
+                        <div class="position-relative">
+                            <select class="form-select form-cyber py-2 text-light" id="primaryActorSelect" name="primary_actor" required style="font-size: 0.9rem;">
+                                <option value="" disabled selected>{{ _('actor_select_default') }}</option>
+                                {% for actor_id, actor_data in profiles.items() %}
+                                    <option value="{{ actor_id }}">
+                                        {{ actor_data.nome if actor_data is mapping and 'nome' in actor_data else (actor_data.name if actor_data is mapping and 'name' in actor_data else actor_id) }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- SCHEDA INFORMATIVA ATTORE (DYNAMIC INTEL PROFILE) -->
+                        <div id="actorIntelCard" class="mt-3 p-3 rounded position-relative" style="background: rgba(5, 12, 28, 0.85); border: 1px dashed var(--border-color, rgba(0, 240, 255, 0.3)); min-height: 100px;">
+                            <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom border-secondary border-opacity-25">
+                                <span class="mono text-info fw-bold" style="font-size: 0.75rem; letter-spacing: 1px;">
+                                    <i class="fa-solid fa-id-card me-1"></i> {{ _('intel_profile_badge') }}
+                                </span>
+                                <span id="actorIntelStatus" class="badge bg-dark text-muted mono" style="font-size: 0.65rem;">{{ _('intel_status_standby') }}</span>
+                            </div>
+                            
+                            <div id="actorIntelContent" class="mono text-secondary" style="font-size: 0.8rem; line-height: 1.5;">
+                                <span class="fst-italic opacity-50">{{ _('intel_empty_desc') }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attori Aggiuntivi -->
+                    <div class="col-lg-6">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label-cyber m-0 fs-6">
+                                <i class="fa-solid fa-layer-group text-info me-2"></i>{{ _('additional_actors_label') }}
+                            </label>
+                            <span class="badge bg-dark border border-secondary text-info mono" style="font-size: 0.75rem;">
+                                <span id="selectedCount">0</span>/3 {{ _('max_actors_warning') }}
+                            </span>
+                        </div>
+                        
+                        <div class="p-3 rounded cyber-scroll" style="background-color: rgba(5, 12, 28, 0.7); border: 1px solid var(--border-color, rgba(0, 240, 255, 0.15)); max-height: 220px; overflow-y: auto;">
+                            <div class="row g-2">
+                                {% for actor_id, actor_data in profiles.items() %}
+                                <div class="col-12">
+                                    <div class="form-check actor-chip-item m-0 d-flex align-items-center">
+                                        <input class="form-check-input additional-actor-checkbox me-2" type="checkbox" name="additional_actors" value="{{ actor_id }}" id="addActor_{{ loop.index }}">
+                                        <label class="form-check-label text-secondary mono w-100" for="addActor_{{ loop.index }}" style="font-size: 0.82rem; cursor: pointer;">
+                                            {{ actor_data.nome if actor_data is mapping and 'nome' in actor_data else actor_id|title }}                                        
+                                        </label>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+
+
+
+                <!-- SEZIONE 3: SCELTA DEL MODELLO DI IA (SELEZIONE A CARD) -->
+                <div class="mb-4">
+                    <label class="form-label-cyber mb-3 fs-6">
+                        <i class="fa-solid fa-brain text-info me-2"></i>{{ _('ai_model_label') }}
+                    </label>
+                    <div class="row g-3">
+                        <!-- Cloud Model Card -->
+                        <div class="col-md-6">
+                            <input type="radio" class="ai-card-input" name="ai_model" id="modelGemini" value="gemini_api" checked>
+                            <label class="ai-card-label" for="modelGemini">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="cyber-badge bg-info-subtle text-info border border-info-subtle mono">
+                                            <i class="fa-solid fa-cloud me-1"></i> {{ _('cloud_engine_badge') }}
+                                        </span>
+                                        
+                                    </div>
+                                    <div class="fw-bold mono text-light fs-6 mb-1">
+                                        {{ _('gemini_api_label') }}
+                                    </div>
+                                    <p class="text-secondary mb-0" style="font-size: 0.8rem; line-height: 1.4;">
+                                        {{ _('gemini_api_desc') }}
+                                    </p>
+                                </div>
+                                
+                            </label>
+                        </div>
+                        
+                        <!-- Local Model Card -->
+                        <div class="col-md-6">
+                            <input type="radio" class="ai-card-input" name="ai_model" id="modelLocal" value="local_model">
+                            <label class="ai-card-label" for="modelLocal">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="cyber-badge bg-success-subtle text-success border border-success-subtle mono">
+                                            <i class="fa-solid fa-server me-1"></i> {{ _('on_prem_node_badge') }}
+                                        </span>
+                                        
+                                    </div>
+                                    <div class="fw-bold mono text-light fs-6 mb-1">
+                                        {{ _('local_model_label') }}
+                                    </div>
+                                    <p class="text-secondary mb-0" style="font-size: 0.8rem; line-height: 1.4;">
+                                        {{ _('local_model_desc') }}
+                                    </p>
+                                </div>
+                                
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                
+
+                    
+
+                <!-- BOTTONE AVVIO SIMULAZIONE -->
+                <div class="text-center mt-5 pt-2">
+                    <button type="submit" class="btn btn-cyber px-5 py-3 fw-bold position-relative overflow-hidden" style="font-size: 1.05rem; letter-spacing: 2px;"
+                        {% if not is_admin %}disabled style="opacity: 0.5; cursor: not-allowed;" title="{{ _('demo_start_disabled_title') }}"{% endif %}>
+                        <i class="fa-solid fa-play me-2 {% if is_admin %}text-info{% else %}text-secondary{% endif %}"></i> {{ _('btn_start_simulation') }}
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Analisi di affinità (suggerimento attore via embedding semantico)
+function getActorSuggestion() {
+    const textarea = document.getElementById('news_text');
+    const fact = textarea.value.trim();
+    if (!fact) {
+        alert({{ _('suggest_actor_empty_alert') | tojson }});
+        return;
+    }
+
+    const btn = document.getElementById('btnSuggestActor');
+    const originalLabel = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> ' + {{ _('suggest_actor_loading') | tojson }};
+
+    fetch("{{ url_for('api_suggest_actor') }}", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fact })
+    })
+    .then(r => r.json())
+    .then(data => {
+        btn.disabled = false;
+        btn.innerHTML = originalLabel;
+
+        const box = document.getElementById('suggestionBox');
+        const top = document.getElementById('suggestionTop');
+        const list = document.getElementById('suggestionList');
+
+        if (data.error || !data.suggestions || data.suggestions.length === 0) {
+            top.innerHTML = `<span class="text-warning">${ {{ _('suggest_actor_no_result') | tojson }} }</span>`;
+            list.innerHTML = '';
+            box.style.display = 'block';
+            return;
+        }
+
+        const best = data.suggestions[0];
+        top.innerHTML = `<span class="text-info">${ {{ _('suggest_actor_best_match') | tojson }} }:</span> <strong class="text-light">${best.name}</strong> <span class="suggestion-score">[${best.score}%]</span>`;
+
+        list.innerHTML = data.suggestions.map((s, i) => `
+            <li class="${i === 0 ? 'is-best' : ''}">
+                <span><span class="suggestion-rank">${String(i + 1).padStart(2, '0')}</span>${s.name}</span>
+                <span class="suggestion-score">${s.score}%</span>
+            </li>
+        `).join('');
+
+        box.style.display = 'block';
+
+        // Seleziona automaticamente l'attore con affinità maggiore e sincronizza la UI
+        const primarySelect = document.getElementById('primaryActorSelect');
+        if (primarySelect) {
+            primarySelect.value = best.actor_id;
+            primarySelect.dispatchEvent(new Event('change'));
+        }
+    })
+    .catch(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalLabel;
+        alert({{ _('suggest_actor_error') | tojson }});
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const checkboxes = document.querySelectorAll('.additional-actor-checkbox');
+    const selectedCountEl = document.getElementById('selectedCount');
+    const primarySelect = document.getElementById('primaryActorSelect');
+    
+    // Inietta l'oggetto JSON dei profili caricati lato Python
+    const actorProfiles = {{ profiles | tojson }};
+
+    function updateCheckboxState() {
+        let checkedCount = 0;
+        checkboxes.forEach(cb => {
+            if (cb.checked) checkedCount++;
+        });
+
+        if (selectedCountEl) {
+            selectedCountEl.textContent = checkedCount;
+        }
+
+        checkboxes.forEach(cb => {
+            if (!cb.checked && checkedCount >= 3) {
+                cb.disabled = true;
+                cb.closest('.actor-chip-item').style.opacity = '0.4';
+            } else if (!cb.disabledByPrimary) {
+                cb.disabled = false;
+                cb.closest('.actor-chip-item').style.opacity = '1';
+            }
+        });
+    }
+
+    // Gestione aggiornamento scheda INTEL PROFILE
+    function updateActorIntelCard(actorId) {
+        const intelContent = document.getElementById('actorIntelContent');
+        const intelStatus = document.getElementById('actorIntelStatus');
+        const profile = actorProfiles[actorId];
+
+        if (!profile) {
+            intelContent.innerHTML = `<span class="fst-italic opacity-50">${ {{ _('intel_no_data_desc') | tojson }} }</span>`;
+            intelStatus.textContent = {{ _('intel_status_nodata') | tojson }};
+            intelStatus.className = 'badge bg-dark text-warning mono';
+            return;
+        }
+
+        intelStatus.textContent = {{ _('intel_status_loaded') | tojson }};
+        intelStatus.className = 'badge bg-info text-dark mono';
+
+        // Estrazione dati dal JSON (supporta sia chiavi italiane che inglesi)
+        const name = profile.nome || profile.name || actorId;
+        const type = profile.tipo || profile.type || {{ _('actor_type_unspecified') | tojson }};
+        const description = profile.descrizione || profile.description || profile.overview || {{ _('actor_desc_missing') | tojson }};
+
+        let html = `
+            <p class="mb-2 text-light opacity-75" style="font-size: 0.82rem; line-height: 1.4;">${description}</p>
+        `;
+
+        intelContent.innerHTML = html;
+    }
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateCheckboxState);
+    });
+
+    if (primarySelect) {
+        primarySelect.addEventListener('change', function() {
+            const val = this.value;
+            
+            // Aggiorna la scheda Intel
+            updateActorIntelCard(val);
+
+            // Disabilita l'attore selezionato tra le opzioni secondarie
+            checkboxes.forEach(cb => {
+                if (cb.value === val) {
+                    cb.checked = false;
+                    cb.disabled = true;
+                    cb.disabledByPrimary = true;
+                    cb.closest('.actor-chip-item').style.opacity = '0.4';
+                } else {
+                    cb.disabledByPrimary = false;
+                }
+            });
+            updateCheckboxState();
+        });
+    }
+});
+</script>
+{%endblock%}
