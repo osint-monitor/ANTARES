@@ -1,0 +1,49 @@
+{
+  "nome": "CyberBerkut",
+  "tipo": "Hacktivismo di Stato / Information Warfare (Filo-Russa)",
+  "descrizione": "Gruppo di minaccia e fronte di hacktivismo filorusso specializzato in operazioni di guerra informativa. Combina attacchi DDoS ad alto impatto visivo con operazioni di cyber-spionaggio, Hack-and-Leak e diffusione di documenti contraffatti per delegittimare le istituzioni occidentali e minare la fiducia nelle alleanze internazionali.",
+  "vettori_comunicativi": [
+    "Attacchi DDoS dimostrativi coordinati ad alto impatto visivo",
+    "Leak di documenti interni alterati o contraffatti tramite cyber-spionaggio",
+    "Campagne di discredito istituzionale e character assassination via canali Telegram"
+  ],
+  "targeting_cognitivo": "Opinione pubblica occidentale, partiti populisti ed euroscettici, cittadini sensibili alla sovranità monetaria, energetica e sanitaria.",
+  "tono_narrativo": "Inquisitorio, documentale, burocratico-scandalistico. Finge di agire come un gruppo indipendente di whistleblowing che rivela la corruzione e il servilismo dei governi locali rispetto a entità sovranazionali (UE, NATO).",
+  "obiettivi_strategici_permanenti": [
+    "Innescare attriti e diffidenza tra i governi nazionali e i vertici di Bruxelles",
+    "Screditare il supporto logistico, economico e militare occidentale",
+    "Amplificare il panico socio-economico (inflazione, caro energia) per colpevolizzare le istituzioni"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0083 - Integrate Target Audience Vulnerabilities into Narrative (Integrare paure e vulnerabilità nelle narrative)",
+    "T0085 - Develop Text-Based Content (Creare contenuti testuali falsi o fuorvianti)",
+    "T0044 - Seed Distortions (Diffondere messaggi distorsivi su un evento)"
+  ],
+  "vulnerabilita_operative": [
+    "Analisi forense tempestiva che dimostra la falsità o la manipolazione dei leak pubblicati",
+    "Takedown coordinato dei canali Telegram e sequestro dell'infrastruttura di comando degli attacchi DDoS",
+    "Campagne di Prebunking governative che spiegano in anticipo le dinamiche dei vincoli economici o energetici"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Sabotaggio delle Elezioni Ucraine (2014)",
+      "descrizione": "Alla vigilia delle elezioni presidenziali ucraine, CyberBerkut ha compromesso i server della Commissione Elettorale Centrale (CEC). L'obiettivo non era solo distruggere i dati, ma pubblicare risultati elettorali pre-fabbricati in cui vinceva un candidato di estrema destra, allo scopo di delegittimare il processo democratico agli occhi dei media internazionali e fornire un pretesto narrativo alla Russia.",
+      "fonti": [
+        {
+          "nome": "CyberLaw - Ukraine election interference",
+          "url": "https://cyberlaw.ccdcoe.org/wiki/Ukrainian_parliamentary_election_interference_(2014)"
+        }
+      ]
+    },
+    {
+      "nome": "Hacking della Cancelleria Tedesca (2015)",
+      "descrizione": "Il gruppo ha lanciato attacchi DDoS prolungati che hanno messo offline i siti del Bundestag e della cancelliera Angela Merkel. L'operazione cognitiva, rivendicata con comunicati trionfalistici, mirava a umiliare il governo tedesco per punirlo dell'appoggio a Kiev e dimostrare la vulnerabilità delle infrastrutture occidentali.",
+      "fonti": [
+        {
+          "nome": "Guardian - German Chancellery hacking",
+          "url": "https://www.theguardian.com/world/2015/jan/07/pro-russian-group-cyber-attack-german-government-websites-angela-merkel-ukraine-prime-minister"
+        }
+      ]
+    }
+  ]
+}

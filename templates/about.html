@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}ANTARES - {{ _('about_meta_title') }}{% endblock %}
+
+{% block content %}
+<style>
+    .contact-badge {
+        background: rgba(0, 242, 254, 0.05);
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+    .contact-badge:hover {
+        border-color: var(--accent-cyan);
+        box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+    }
+    .vision-para {
+        position: relative;
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--accent-cyan);
+        border-radius: 4px;
+        padding: 18px 22px;
+        margin-bottom: 14px;
+        background: rgba(10, 17, 40, 0.85);
+    }
+    .vision-para::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid var(--accent-cyan);
+        border-right: 2px solid var(--accent-cyan);
+    }
+    .vision-para .para-tag {
+        font-family: var(--terminal-font);
+        color: var(--accent-cyan);
+        font-size: 0.68rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin: 0 0 8px;
+        display: block;
+    }
+    .vision-para p {
+        font-size: 0.95rem;
+        line-height: 1.75;
+        color: var(--text-primary);
+        margin: 0;
+    }
+</style>
+
+<div class="row justify-content-center my-4 page-container">
+    <div class="col-xl-11 col-lg-12">
+
+        <!-- HEADER PRINCIPALE -->
+        <div class="cyber-card scanner-container text-center py-4 mb-4">
+            <h1 class="display-6 tech-header glow-cyan mb-2">
+                {{ _('about_main_title') }}
+            </h1>
+            <p class="text-secondary mx-auto mb-0" style="max-width: 700px; font-size: 0.9rem;">
+                {{ _('about_main_subtitle') }}
+            </p>
+        </div>
+
+        
+
+        <!-- LA VISIONE E IL PROGETTO -->
+        <div class="cyber-card mb-4 p-4 p-lg-5">
+            <div class="d-flex align-items-center mb-4 border-bottom border-secondary pb-3">
+                <i class="fa-solid fa-crosshairs text-info fs-4 me-3"></i>
+                <h2 class="tech-header fs-4 mb-0 text-light">{{ _('about_vision_title') }}</h2>
+            </div>
+            
+            <div class="about-text">
+                <div class="vision-para">
+                    <span class="para-tag">{{ _('about_vision_p1_tag') }}</span>
+                    <p>{{ _('about_vision_p1') | safe }}</p>
+                </div>
+                <div class="vision-para">
+                    <span class="para-tag">{{ _('about_vision_p2_tag') }}</span>
+                    <p>{{ _('about_vision_p2') | safe }}</p>
+                </div>
+                <div class="vision-para">
+                    <span class="para-tag">{{ _('about_vision_p3_tag') }}</span>
+                    <p>{{ _('about_vision_p3') | safe }}</p>
+                </div>
+                <div class="vision-para">
+                    <span class="para-tag">{{ _('about_vision_p4_tag') }}</span>
+                    <p>{{ _('about_vision_p4') | safe }}</p>
+                </div>
+                <div class="mt-4 p-3 rounded" style="background: rgba(0, 242, 254, 0.05); border-left: 3px solid var(--accent-cyan);">
+                    <p class="mb-0 text-info fw-bold" style="font-style: italic;">
+                        {{ _('about_vision_p5') | safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- SEZIONE CONTATTI E INFO -->
+        <div class="cyber-card p-4">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h2 class="tech-header fs-5 text-light mb-2">
+                        <i class="fa-solid fa-envelope me-2 text-info"></i>{{ _('contact_title') }}
+                    </h2>
+                    <p class="text-secondary mb-3 mb-lg-0" style="font-size: 0.9rem;">
+                        {{ _('contact_desc') }}
+                    </p>
+                </div>
+                <div class="col-lg-5">
+                    <div class="contact-badge p-3 rounded d-flex align-items-center justify-content-between">
+                        <div>
+                            <a href="mailto:info.osintmonitor@gmail.com" class="mono text-info fw-bold text-decoration-none" style="font-size: 0.95rem;">
+                                info.osintmonitor@gmail.com
+                            </a>
+                        </div>
+                        <a href="mailto:info.osintmonitor@gmail.com" class="btn btn-cyber py-2 px-3">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOX DIMOSTRATIVO / DISCLAIMER -->
+        <div class="cyber-card card-orange mb-4">
+            <div class="d-flex align-items-center mb-3">
+                <i class="fa-solid fa-triangle-exclamation text-warning fs-4 me-3"></i>
+                <div>
+                    <h3 class="mono fs-6 text-warning mb-0">{{ _('disclaimer_title') }}</h3>
+                </div>
+            </div>
+            <p class="text-light mb-0" style="font-size: 0.92rem; line-height: 1.6;">
+                {{ _('disclaimer_text') }}
+            </p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

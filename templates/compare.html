@@ -1,0 +1,675 @@
+{% extends "base.html" %}
+
+{% block title %}ANTARES - {{ _('multi_actor_comparisons') }}{% endblock %}
+
+{% block content %}
+<style>
+    .page-container--compare { max-width: 100% !important; }
+    
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .header-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .row-label--toggle {
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+    }
+    .row-label--toggle:hover {
+        opacity: 0.85;
+    }
+    .row-toggle-icon {
+        display: inline-block;
+        width: 12px;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+    }
+
+    /* Animazione di collasso/espansione delle righe della matrice */
+    .row-fade-exit {
+        transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        transform: translateY(-8px) scaleY(0.95);
+        transform-origin: top;
+    }
+    .row-fade-enter {
+        animation: rowFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes rowFadeIn {
+        from { 
+            opacity: 0; 
+            transform: translateY(-10px) scaleY(0.95); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0) scaleY(1); 
+        }
+    }
+
+
+    #compareGridRed {
+        background: rgba(239, 68, 68, 0.15); 
+    }
+
+    /* Intestazioni griglie Red vs Blue */
+    #compareGridRed .compare-header {
+        color: #f87171;
+        background: rgba(25, 15, 15, 0.9); 
+        border-bottom: 2px solid rgba(239, 68, 68, 0.35);
+    }
+
+    /* Wrapper Red */
+    #wrapperRed {
+        border-color: rgba(239, 68, 68, 0.3);
+        background: rgba(12, 7, 7, 0.85);
+    }
+
+    #wrapperRed .cell-payload {
+        background: rgba(25, 12, 12, 0.9);
+        border: 1px solid rgba(239, 68, 68, 0.35);
+        border-radius: 6px;
+        padding: 10px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    #compareGridBlue .compare-header {
+        color: var(--accent-cyan);
+        background: rgba(15, 23, 42, 0.9);
+        border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+    }
+
+    
+    #wrapperBlue {
+        border-color: rgba(56, 189, 248, 0.2);
+    }
+
+    #wrapperBlue .cell-payload {
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid rgba(56, 189, 248, 0.25);
+        border-radius: 6px;
+        padding: 10px;
+    }
+    
+    /* RED TEAM: Etichette e celle */
+    #compareGridRed .compare-row-label {
+        background: rgba(25, 15, 15, 0.85);
+        border-left-color: rgba(248, 113, 113, 0.45);
+    }
+    #compareGridRed .compare-cell {
+        background: rgba(15, 10, 10, 0.6);
+    }
+    
+    /* BLUE TEAM */
+    #compareGridBlue .compare-row-label {
+        background: rgba(15, 23, 42, 0.85);
+        border-left-color: rgba(56, 189, 248, 0.35);
+    }
+    #compareGridBlue .compare-cell {
+        background: rgba(10, 17, 40, 0.6);
+    }
+
+
+
+
+    /* Animazione d'ingresso per il cambio tab */
+    @keyframes tabSwitchIn {
+        from {
+            opacity: 0;
+            transform: translateY(12px) scale(0.995);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .compare-scroll-wrapper {
+        overflow-x: auto;
+        margin-top: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background: rgba(6, 12, 32, 0.4);
+        animation: tabSwitchIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+
+    .compare-grid {
+        display: grid;
+        gap: 1px;
+        background: var(--border-color);
+    }
+    .compare-header {
+        padding: 12px 15px;
+        font-family: var(--terminal-font);
+        font-size: 0.85rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+    }
+    
+    .compare-row-label {
+        padding: 12px 15px;
+        font-family: var(--terminal-font);
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        border-left: 3px solid transparent;
+    }
+    
+    .compare-cell {
+        padding: 12px 15px;
+        font-size: 0.85rem;
+        font-weight: 400;
+        color: var(--text-primary);
+        line-height: 1.5;
+    }
+    
+    /* Box scrollabili dedicati */
+    .cell-scroll-box {
+        max-height: 320px;
+        overflow-y: auto;
+        padding-right: 6px;
+        scrollbar-width: thin;
+    }
+    
+    .cell-blue-scroll {
+        scrollbar-color: var(--accent-cyan) rgba(15, 23, 42, 0.3);
+    }
+    .cell-blue-scroll::-webkit-scrollbar { width: 4px; }
+    .cell-blue-scroll::-webkit-scrollbar-thumb { background-color: var(--accent-cyan); border-radius: 2px; }
+
+    .cell-red-scroll {
+        scrollbar-color: #f87171 rgba(25, 12, 12, 0.3);
+    }
+    .cell-red-scroll::-webkit-scrollbar { width: 4px; }
+    .cell-red-scroll::-webkit-scrollbar-thumb { background-color: #f87171; border-radius: 2px; }
+
+    .cell-subhead {
+        font-family: var(--terminal-font);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        opacity: 0.9;
+    }
+    .cell-subhead:first-child {
+        margin-top: 0;
+    }
+    .cell-strong {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+    
+    .cell-payload {
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid rgba(239, 68, 68, 0.25);
+        border-radius: 6px;
+        padding: 10px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    .tab-bar {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding-bottom: 15px;
+    }
+    .tab-btn {
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid var(--border-color);
+        color: var(--text-muted);
+        padding: 12px 28px;
+        font-family: var(--terminal-font);
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+    .tab-btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text-primary);
+        border-color: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+    }
+    
+    /* RED TEAM */
+    .tab-btn.active[data-tab="red"] {
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(15, 10, 10, 0.9));
+        border-color: #f87171;
+        color: #f87171;
+        box-shadow: 0 0 22px rgba(239, 68, 68, 0.45), inset 0 0 10px rgba(239, 68, 68, 0.2);
+        text-shadow: 0 0 8px rgba(248, 113, 113, 0.5);
+    }
+    
+    /* BLUE TEAM */
+    .tab-btn.active[data-tab="blue"] {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(15, 23, 42, 0.9));
+        border-color: #60a5fa;
+        color: #60a5fa;
+        box-shadow: 0 0 22px rgba(59, 130, 246, 0.45), inset 0 0 10px rgba(59, 130, 246, 0.2);
+        text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+    }
+
+    .meta-bar {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .fact-banner {
+        background: rgba(15, 23, 42, 0.5);
+        border-left: 3px solid #f87171;
+        padding: 14px 18px;
+        margin-top: 15px;
+        border-radius: 0 4px 4px 0;
+        font-size: 0.85rem;
+        color: var(--text-primary);
+        min-height: 60px;
+        max-height: 220px;
+        overflow-y: auto;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        transition: border-color 0.3s ease;
+    }
+    
+    .spinner-cell {
+        font-family: var(--terminal-font);
+        font-size: 0.75rem;
+    }
+</style>
+
+<div class="page-container page-container--compare">
+
+    <header class="page-header">
+        <div class="page-header__left">
+            <h1 class="page-title glow-cyan" style="margin: 5px 0;">{{ _('multi_actor_comparisons') }}</h1>
+        </div>
+        <div class="header-actions">
+            <!-- PDF: Inserito per primo icona PDF -->
+            <button class="btn-cyber btn-cyber-red d-flex align-items-center gap-2" onclick="downloadComparePDF()">
+                <i class="fa-regular fa-file-pdf"></i> {{ _('PDF Report') }}
+            </button>
+            
+            <!-- CSV: Inserito per secondo icona CSV -->
+            <button class="btn-cyber btn-cyber-green d-flex align-items-center gap-2" onclick="downloadCSV()">
+                <i class="fa-solid fa-file-csv"></i> {{ _('Export CSV') }}
+            </button>
+        </div>
+    </header>
+
+    <div class="fact-banner" id="factBanner">{{ _('Waiting...') }}</div>
+    <div class="meta-bar" id="metaBar"></div>
+
+    <div class="tab-bar">
+        <button class="tab-btn active" data-tab="red" onclick="switchTab('red')">
+            <i class="fa-solid fa-crosshairs"></i> {{ _('Red Team') }}
+        </button>
+        <button class="tab-btn" data-tab="blue" onclick="switchTab('blue')">
+            <i class="fa-solid fa-shield-halved"></i> {{ _('Blue Team') }}
+        </button>
+    </div>
+
+    <div class="compare-scroll-wrapper" id="wrapperRed">
+        <div class="compare-grid" id="compareGridRed"></div>
+    </div>
+
+    <div class="compare-scroll-wrapper" id="wrapperBlue" style="display:none;">
+        <div class="compare-grid" id="compareGridBlue"></div>
+    </div>
+
+</div>
+
+<script>
+    const groupId = "{{ group_id }}";
+    const apiUrl = "{{ url_for('api_group_status', group_id=group_id) }}";
+    const statusBaseUrl = "{{ url_for('show_status_page', task_id=0) }}";
+
+    const METRICS_RED = [
+        { key: 'risk_assessment', label: "{{ _('Risk Assessment') }}", render: 'text' },
+        { key: 'psyops_objectives', label: "{{ _('PSYOPS Objectives') }}", render: 'text' },
+        { key: 'target_audience_analysis', label: "{{ _('Target Audience') }}", render: 'text' },
+        { key: 'social_payload', label: "{{ _('Social Payload') }}", render: 'payload' },
+        { key: 'disarm_techniques', label: "{{ _('DISARM Techniques') }}", render: 'text' },
+        { key: 'weak_spots', label: "{{ _('Actor Weak Spots') }}", render: 'text' },
+    ];
+
+    const METRICS_BLUE = [
+        { key: '1', label: "{{ _('Immediate Threat Assessment') }}" },
+        { key: '2', label: "{{ _('Strategic Counter-Narrative (Prebunking)') }}" },
+        { key: '3', label: "{{ _('Mainstream Media Directives') }}" },
+        { key: '4', label: "{{ _('Digital Cleanup & Debunking Actions') }}" },
+        { key: '5', label: "{{ _('Monitoring & Resilience Indicators') }}" },
+    ];
+
+    let pollInterval = setInterval(pollGroup, 3000);
+    let lastTasks = [];
+    let collapsedRed = new Set();
+    let collapsedBlue = new Set();
+    pollGroup();
+
+    function cleanJson(raw) {
+        if (!raw) return "";
+        const s = raw.replace(/```json/gi,"").replace(/```/g,"").trim();
+        const a = s.indexOf('{'), b = s.lastIndexOf('}');
+        return (a !== -1 && b > a) ? s.substring(a, b+1) : s;
+    }
+
+    function esc(s) {
+        return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    }
+
+    function parseBlueSections(md) {
+        const sections = {};
+        if (!md) return sections;
+        const lines = md.split('\n');
+        let currentKey = null;
+        
+        for (let line of lines) {
+            const m = line.match(/^###\s+(\d+)\b/);
+            if (m) {
+                currentKey = m[1];
+                sections[currentKey] = '';
+            } else if (currentKey !== null && !/^-{3,}\s*$/.test(line)) {
+                sections[currentKey] += line + '\n';
+            }
+        }
+        Object.keys(sections).forEach(k => sections[k] = sections[k].trim());
+        return sections;
+    }
+
+    function mdInlineToHtml(text, isBlue) {
+        if (!text) return "";
+        const accentColor = isBlue ? 'var(--accent-cyan)' : '#f87171';
+        let t = esc(text);
+        t = t.replace(/^-{3,}\s*$/gm, '');
+        t = t.replace(/^####\s+(.+)$/gm, `<div class="cell-subhead" style="color:${accentColor};">$1</div>`);
+        t = t.replace(/^###\s+(.+)$/gm, `<div class="cell-subhead" style="color:${accentColor};">$1</div>`);
+        t = t.replace(/\*\*(.+?)\*\*/g, `<span class="cell-strong">$1</span>`);
+        t = t.replace(/^-\s+(.+)$/gm, '• $1');
+        t = t.replace(/\n{3,}/g, '\n\n');
+        return t.trim();
+    }
+
+    function renderRedCell(metric, redData, task) {
+        const st = (task.status || "").toLowerCase();
+        if (st === 'pending' || st === 'processing') {
+            return `<div class="spinner-cell" style="color:#f87171;"><span style="animation: blink 1s infinite;">_</span> ${task.status.toUpperCase().replace(/_/g,' ')}</div>`;
+        }
+        if (st === 'error') return `<div style="color:var(--accent-red); font-size:0.75rem;">ERROR</div>`;
+        const val = redData[metric.key] || "{{ _('N/A') }}";
+        if (metric.render === 'payload') return `<div class="cell-payload">${esc(val)}</div>`;
+        return `<div class="cell-scroll-box cell-red-scroll">${esc(val)}</div>`;
+    }
+
+    function renderBlueCell(metric, sections, task) {
+        const st = (task.status || "").toLowerCase();
+        if (st === 'pending' || st === 'processing' || st === 'processing_blue') {
+            return `<div class="spinner-cell" style="color:var(--accent-cyan);"><span style="animation: blink 1s infinite;">_</span> ${task.status.toUpperCase().replace(/_/g,' ')}</div>`;
+        }
+        if (st === 'error') return `<div style="color:var(--accent-red); font-size:0.75rem;">ERROR</div>`;
+        const val = sections[metric.key] || "{{ _('N/A') }}";
+        return `<div class="cell-scroll-box cell-blue-scroll">${mdInlineToHtml(val, true)}</div>`;
+    }
+
+    function toggleRow(key, isBlue) {
+        const set = isBlue ? collapsedBlue : collapsedRed;
+        const containerId = isBlue ? 'compareGridBlue' : 'compareGridRed';
+        const grid = document.getElementById(containerId);
+        const willCollapse = !set.has(key);
+
+        const rebuild = () => {
+            if (lastTasks && lastTasks.length) {
+                buildGrid(lastTasks, isBlue ? METRICS_BLUE : METRICS_RED, containerId, isBlue);
+            }
+        };
+
+        if (willCollapse) {
+            
+            const rowEls = grid.querySelectorAll(`[data-metric-key="${CSS.escape(key)}"]`);
+            rowEls.forEach(el => el.classList.add('row-fade-exit'));
+            setTimeout(() => {
+                set.add(key);
+                rebuild();
+            }, 240);
+        } else {
+            set.delete(key);
+            rebuild();
+            // Anima l'ingresso della riga appena espansa
+            requestAnimationFrame(() => {
+                const rowEls = grid.querySelectorAll(`[data-metric-key="${CSS.escape(key)}"]`);
+                rowEls.forEach(el => el.classList.add('row-fade-enter'));
+                setTimeout(() => rowEls.forEach(el => el.classList.remove('row-fade-enter')), 350);
+            });
+        }
+    }
+
+    function buildGrid(tasks, metrics, containerId, isBlue) {
+        const grid = document.getElementById(containerId);
+        grid.innerHTML = '';
+        grid.style.gridTemplateColumns = `220px repeat(${tasks.length}, minmax(300px, 1fr))`;
+
+        const collapsedSet = isBlue ? collapsedBlue : collapsedRed;
+
+        const lbl = document.createElement('div');
+        lbl.className = 'compare-header compare-row-label';
+        lbl.innerText = isBlue ? "{{ _('Blue Team') }}" : "{{ _('Red Team') }}";
+        lbl.style.gridRow = 1;
+        lbl.style.gridColumn = 1;
+        grid.appendChild(lbl);
+
+        tasks.forEach((t, colIdx) => {
+            const h = document.createElement('div');
+            h.className = 'compare-header';
+            const taskUrl = statusBaseUrl.replace('0', t.id);
+            h.innerHTML = `<a href="${taskUrl}" style="color:${isBlue ? 'var(--accent-cyan)' : '#f87171'}; text-decoration:none;" title="Inspect Task #${t.id}">${(t.actor_id || "N/A").toUpperCase()} <span style="color:var(--text-muted); font-weight:400; margin-left:5px;">#${t.id}</span></a>`;
+            h.style.gridRow = 1;
+            h.style.gridColumn = colIdx + 2;
+            grid.appendChild(h);
+        });
+
+        metrics.forEach((metric, rowIdx) => {
+            const gridRow = rowIdx + 2;
+            const isCollapsed = collapsedSet.has(metric.key);
+
+            const lblRow = document.createElement('div');
+            lblRow.className = 'compare-row-label row-label--toggle';
+            lblRow.style.gridRow = gridRow;
+            lblRow.dataset.metricKey = metric.key;
+
+            if (isCollapsed) {
+                lblRow.style.gridColumn = `1 / -1`;
+                lblRow.style.justifyContent = 'center';
+                lblRow.style.textAlign = 'center';
+                lblRow.style.background = 'rgba(15, 23, 42, 0.95)';
+                lblRow.style.borderLeft = `3px solid ${isBlue ? 'var(--accent-cyan)' : '#f87171'}`;
+                lblRow.innerHTML = `<span class="row-toggle-icon">▸</span><span style="letter-spacing: 1px; color: ${isBlue ? 'var(--accent-cyan)' : '#f87171'};">${esc(metric.label)} [COLLAPSED]</span>`;
+            } else {
+                lblRow.style.gridColumn = 1;
+                lblRow.style.justifyContent = 'flex-start';
+                lblRow.style.textAlign = 'left';
+                lblRow.style.background = '';
+                lblRow.style.borderLeft = '';
+                lblRow.innerHTML = `<span class="row-toggle-icon">▾</span><span>${esc(metric.label)}</span>`;
+            }
+
+            lblRow.addEventListener('click', () => toggleRow(metric.key, isBlue));
+            grid.appendChild(lblRow);
+
+            if (!isCollapsed) {
+                tasks.forEach((t, colIdx) => {
+                    let html = '';
+                    if (isBlue) {
+                        const sections = parseBlueSections(t.blue_team_result || '');
+                        html = renderBlueCell(metric, sections, t);
+                    } else {
+                        let redData = {};
+                        try { redData = JSON.parse(cleanJson(t.result_text || "")); } catch(e) {}
+                        html = renderRedCell(metric, redData, t);
+                    }
+                    const div = document.createElement('div');
+                    div.className = 'compare-cell';
+                    div.style.gridRow = gridRow;
+                    div.style.gridColumn = colIdx + 2;
+                    div.dataset.metricKey = metric.key;
+                    div.innerHTML = html;
+                    grid.appendChild(div);
+                });
+            }
+        });
+    }
+
+    function switchTab(tab) {
+        const redWrapper = document.getElementById('wrapperRed');
+        const blueWrapper = document.getElementById('wrapperBlue');
+        
+        // Gestione visibilità
+        redWrapper.style.display = tab === 'red' ? 'block' : 'none';
+        blueWrapper.style.display = tab === 'blue' ? 'block' : 'none';
+        
+        // Riattiva l'animazione sul wrapper attivo
+        const activeWrapper = tab === 'red' ? redWrapper : blueWrapper;
+        activeWrapper.style.animation = 'none';
+        activeWrapper.offsetHeight; // Trigger reflow per riavviare l'animazione CSS
+        activeWrapper.style.animation = 'tabSwitchIn 3.0s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+
+        // Aggiorna lo stato dei bottoni
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+        
+        // Sincronizza il colore del bordo del banner informativo in alto
+        const factBanner = document.getElementById('factBanner');
+        if (factBanner) {
+            factBanner.style.borderLeftColor = tab === 'red' ? '#f87171' : '#60a5fa'; 
+        }
+    }
+
+    function pollGroup() {
+        fetch(apiUrl)
+        .then(r => r.json())
+        .then(data => {
+            const tasks = data.tasks || [];
+            lastTasks = tasks;
+            if (tasks.length > 0 && tasks[0].fact_text) {
+                document.getElementById('factBanner').innerText = tasks[0].fact_text;
+            }
+            const done = tasks.filter(t => ['completed','error'].includes(t.status)).length;
+            
+            buildGrid(tasks, METRICS_RED, 'compareGridRed', false);
+            buildGrid(tasks, METRICS_BLUE, 'compareGridBlue', true);
+            if (done === tasks.length) clearInterval(pollInterval);
+        })
+        .catch(err => console.error("[ANTARES] Group polling error:", err));
+    }
+
+    function mdToPlainText(text) {
+        if (!text) return "";
+        let t = String(text);
+        t = t.replace(/^-{3,}\s*$/gm, '');
+        t = t.replace(/^####\s+/gm, '');
+        t = t.replace(/^###\s+/gm, '');
+        t = t.replace(/\*\*(.+?)\*\*/g, '$1');
+        t = t.replace(/^-\s+/gm, '• ');
+        t = t.replace(/\n{3,}/g, '\n\n');
+        return t.trim();
+    }
+
+    function csvEscape(val) {
+        const s = String(val ?? "");
+        if (/[",\n\r;]/.test(s)) {
+            return '"' + s.replace(/"/g, '""') + '"';
+        }
+        return s;
+    }
+
+    function buildCsvRows(tasks) {
+        const rows = [];
+        const factText = (tasks[0] && tasks[0].fact_text) || "";
+        const colHeaders = tasks.map(t => `${(t.actor_id || "N/A").toUpperCase()} #${t.id}`);
+
+        rows.push(["A.N.T.A.R.E.S. — Multi-Actor Matrix"]);
+        rows.push(["Group", groupId]);
+        rows.push(["Source Event", mdToPlainText(factText)]);
+        rows.push([]);
+
+        rows.push(["=== RED TEAM — PSYOPS Analysis ==="]);
+        rows.push(["Metric", ...colHeaders]);
+        METRICS_RED.forEach(metric => {
+            const row = [metric.label];
+            tasks.forEach(t => {
+                let redData = {};
+                try { redData = JSON.parse(cleanJson(t.result_text || "")); } catch (e) {}
+                const raw = redData[metric.key] || "N/A";
+                row.push(mdToPlainText(raw));
+            });
+            rows.push(row);
+        });
+
+        rows.push([]);
+        rows.push(["=== BLUE TEAM — Counter-Playbook ==="]);
+        rows.push(["Section", ...colHeaders]);
+        METRICS_BLUE.forEach(metric => {
+            const row = [metric.label];
+            tasks.forEach(t => {
+                const sections = parseBlueSections(t.blue_team_result || "");
+                row.push(mdToPlainText(sections[metric.key] || "N/A"));
+            });
+            rows.push(row);
+        });
+
+        return rows;
+    }
+
+    function downloadCSV() {
+        if (!lastTasks || !lastTasks.length) {
+            alert("No data available for export.");
+            return;
+        }
+        const rows = buildCsvRows(lastTasks);
+        const csvContent = rows.map(r => r.map(csvEscape).join(',')).join('\r\n');
+        const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `ANTARES_Matrix_${groupId.substring(0, 8)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    function downloadComparePDF() {
+        const baseUrl = "{{ url_for('export_pdf_compare', group_id='__GID__') }}";
+        window.location.href = baseUrl.replace('__GID__', groupId);
+    }
+</script>
+{% endblock %}

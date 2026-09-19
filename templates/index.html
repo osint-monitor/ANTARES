@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}ANTARES - System Operational{% endblock %}
+
+{% block body_class %}no-scroll-page{% endblock %}
+
+{% block content %}
+<div class="antares-home">
+    <div class="container-fluid px-3 px-lg-4 px-xxl-5 py-4 py-lg-5">
+
+        
+
+        <div class="row g-4 align-items-stretch">
+            <!-- Main panel -->
+            <div class="col-xl-12">
+                <section class="mission-panel h-100">
+                    <div class="mission-grid"></div>
+                    <div class="mission-content">
+                        
+                        <h1 class="mission-title">
+                            {{ _('welcome_title') | safe }}
+                        </h1>
+
+                        <div class="acronym-stack mono acronym-stack--inline">
+                            <div class="acronym-row"><span class="acronym-letter">A</span>dversarial</div>
+                            <div class="acronym-row"><span class="acronym-letter">N</span>arrative</div>
+                            <div class="acronym-row"><span class="acronym-letter">T</span>hreat</div>
+                            <div class="acronym-row"><span class="acronym-letter">A</span>nalysis &amp;</div>
+                            <div class="acronym-row"><span class="acronym-letter">R</span>esponse</div>
+                            <div class="acronym-row"><span class="acronym-letter">E</span>valuation</div>
+                            <div class="acronym-row"><span class="acronym-letter">S</span>ystem</div>
+                        </div>
+
+                        <p class="mission-description">
+                            {{ _('ANTARES is a cognitive simulation platform designed to anticipate and counter disinformation. It profiles hostile actors, simulates weaponization strategies, and generates FIMI response playbooks through an isolated, resource-optimized architecture.') }}
+                        </p>
+
+                        <div class="mission-actions">
+                            <a href="{{ url_for('new_task') }}" class="btn btn-cyber btn-cyber-primary">
+                                <i class="fa-solid fa-satellite-dish me-2"></i>{{ _('nav_simulazione') }}
+                            </a>
+                            <a href="{{ url_for('architecture') }}" class="btn btn-cyber btn-cyber-quiet">
+                                <i class="fa-solid fa-diagram-project me-2"></i>{{ _('View Architecture') }}
+                            </a>
+                        </div>
+
+                        <div class="mission-note mono">
+                            <span>{{ _('01') }}</span> {{ _('MATCH') }} · <span>{{ _('02') }}</span> {{ _('SELECT ENGINE') }} · <span>{{ _('03') }}</span> {{ _('SIMULATE') }} · <span>{{ _('04') }}</span> {{ _('EXPORT') }}
+                        </div>
+                    </div>
+
+                    <div class="mission-aside">
+                        <div class="orbit-wrap">
+                            <div class="orbit orbit-lg"></div>
+                            <div class="orbit orbit-sm"></div>
+                            <div class="orbit-core">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

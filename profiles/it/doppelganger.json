@@ -1,0 +1,54 @@
+{
+  "nome": "Doppelgänger (Reliable Recent News)",
+  "tipo": "Operazione di Disinformazione Strutturata (Typosquatting/Fake News / Filo-Russa)",
+  "descrizione": "Operazione industriale di disinformazione e manipolazione dell'informazione di matrice filo-russa. Specializzata nel typosquatting e nella clonazione specchio di testate giornalistiche occidentali autorevoli, impiega botnet coordinate su larga scala, articoli contraffatti e contenuti multimediali manipolati per erodere il sostegno all'Ucraina e polarizzare l'opinione pubblica europea su paure economiche e sociali.",
+  "vettori_comunicativi": [
+    "Clonazione specchio e illegittima di testate giornalistiche occidentali autorevoli (es. ANSA, Repubblica)",
+    "Bot network coordinate su larga scala su X/Twitter e Facebook per l'innesco virale",
+    "Generazione di video deepfake e infografiche manipolate con loghi istituzionali clonati",
+    "Iniezione massiva di commenti inautentici per alterare gli algoritmi di raccomandazione social"
+  ],
+  "targeting_cognitivo": "Cittadini europei e italiani preoccupati per la stabilità economica, l'inflazione, il costo della vita e l'immigrazione. Mira a frammentare la coesione sociale e politica interna.",
+  "tono_narrativo": "Allarmistico, pseudo-giornalistico, polarizzante. Finge totale oggettività documentale per veicolare il messaggio geopolitico sottostante: i soldi dei contribuenti vengono sprecati per conflitti esteri mentre la popolazione locale affronta il declino economico.",
+  "obiettivi_strategici_permanenti": [
+    "Erodere il consenso pubblico verso il supporto economico, politico e militare all'Ucraina e alle alleanze occidentali",
+    "Esacerbare le divisioni sociali interne sfruttando paure economiche reali (inflazione, tasse, caro energia)",
+    "Alimentare il sentimento euroscettico presentando l'Unione Europea come un ente parassitario e dannoso per le economie locali"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0098.001 - Create Inauthentic News Sites (Creare siti di notizie inautentici)",
+    "T0143.003 - Impersonated Persona (Impersonare testate o istituzioni esistenti)",
+    "T0146.007 - Automated Account Asset (Usare account per attività automatizzate)"
+  ],
+  "vulnerabilita_operative": [
+    "Takedown tempestivo e coordinato a livello DNS dei domini cloni appena registrati (fast-response)",
+    "Debunking visivo rapido tramite watermark o comunicati ufficiali delle testate clonate per avvisare i lettori",
+    "Algoritmi di rilevamento delle piattaforme social che intercettano i pattern di condivisione simultanea e inautentica dei link"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Operazione Clone-News (2022-In corso)",
+      "descrizione": "Individuata da EU DisinfoLab, è la più vasta campagna di infosabotaggio in Europa. Gli operatori hanno clonato decine di testate (tra cui Le Monde, The Guardian, Der Spiegel e l'italiana ANSA) registrando domini simili (es. .co invece di .com). Sulle false testate venivano inseriti articoli inventati (es. 'L'Ucraina rivende le armi italiane alla mafia') diffusi poi massivamente via social per distruggere la fiducia verso Kiev.",
+      "fonti": [
+        {
+          "nome": "EU DisinfoLab - Doppelgänger Report",
+          "url": "https://www.disinfo.eu/doppelganger/"
+        },
+        {
+          "nome": "Wikipedia - Doppelgänger",
+          "url": "https://en.wikipedia.org/wiki/Doppelganger_(disinformation_campaign)"
+        }
+      ]
+    },
+    {
+      "nome": "Amplificazione della Paura in Francia (2023)",
+      "descrizione": "Sfruttando l'ondata emotiva della guerra in Medio Oriente, la rete Doppelgänger ha amplificato in modo inautentico le foto di Stelle di David dipinte sui muri di Parigi. L'obiettivo dell'operazione, confermata dai servizi segreti francesi (Viginum), era quello di esacerbare le tensioni religiose interne in Francia, seminare il panico tra la comunità ebrea e polarizzare l'opinione pubblica.",
+      "fonti": [
+        {
+          "nome": "Le Club Du Juristes - Russian interference in France",
+          "url": "https://www.leclubdesjuristes.com/societe/affaire-des-etoiles-de-david-taguees-a-paris-quelles-poursuites-possibles-dans-le-cas-dun-commanditaire-etranger-3717/"
+        }
+      ]
+    }
+  ]
+}

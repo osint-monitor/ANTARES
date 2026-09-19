@@ -1,0 +1,54 @@
+{
+  "nome": "Ghostwriter (UNC1151)",
+  "tipo": "Information Warfare, Cyber Compromise and False Flag Operation",
+  "descrizione": "Information warfare and cyberespionage operation with Belarusian state links and Russian-aligned interests. Specializing in compromising news websites, political and public accounts, forging official communications, and creating fake news stories, it aims to undermine trust in NATO, European governments, democratic institutions, and allied military forces while increasing political friction within Europe.",
+  "vettori_comunicativi": [
+    "Cyber compromise of CMS (Content Management Systems) of local and regional news websites across European countries",
+    "Fabrication and dissemination of false official letters from ministries, military commands, diplomatic institutions, or defense entities",
+    "Release of fake crime and security articles portraying alleged misconduct by NATO or allied military personnel",
+    "Cognitive infiltration into geographically targeted social-media groups, Telegram channels, and citizen forums to amplify locally relevant narratives"
+  ],
+  "targeting_cognitivo": "European civilian populations, particularly in NATO member states and countries close to active conflict zones or hosting allied troops, military facilities, and exercises. Political officials, journalists, military personnel, diaspora communities, and locally connected online communities are targeted to generate distrust, moral outrage, anxiety, and hostility toward NATO and allied governments.",
+  "tono_narrativo": "Fabricated, indignant, provocative, and urgent. Uses the appearance of local journalism, official correspondence, leaked communications, and eyewitness reporting to present sensational or invented incidents as suppressed truths. Narratives are adapted to local political and social sensitivities while portraying NATO, national governments, and allied forces as dangerous, incompetent, dishonest, or hostile to local populations.",
+  "obiettivi_strategici_permanenti": [
+    "Undermine European public trust in NATO, allied military presence, and collective defense commitments",
+    "Create diplomatic and political friction between European governments and foreign military forces stationed or operating in their territory",
+    "Polarize European societies by exploiting sensitive issues involving migration, security, military activity, Russia, Belarus, and the war in Ukraine",
+    "Compromise the credibility of regional and local information ecosystems by using hacked legitimate platforms to distribute fabricated content",
+    "Increase distrust between NATO member states and weaken political cohesion within the European security environment"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0011 - Compromise Legitimate Accounts (Compromise legitimate accounts to spread content)",
+    "T0085.002 - Develop False or Altered Documents (Create false or altered documents)",
+    "T0085.003 - Develop Inauthentic News Articles (Create false or misleading news articles)"
+  ],
+  "vulnerabilita_operative": [
+    "Restrictive cyber incident response and continuous CMS, account, and authentication-log monitoring to quickly detect and reverse unauthorized publication",
+    "Rapid technical and forensic verification by European government institutions and defense ministries when fabricated official documents or statements appear online",
+    "Coordinated monitoring of compromised media and political accounts across European countries to identify recurring Ghostwriter infrastructure and tactics",
+    "Rapid public attribution and transparent communication by affected institutions to prevent fabricated incidents from becoming established narratives",
+    "Cross-border information-sharing among European cybersecurity authorities, NATO members, media organizations, and trusted researchers to identify coordinated campaigns"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Anti-NATO Campaign in Lithuania (2020)",
+      "descrizione": "During the pandemic, UNC1151 operators hacked several Lithuanian news portals, inserting fake articles. The falsified news claimed that a NATO troop commander had contracted COVID-19 and was spreading it among the civilian population. The news was supported by fake emails sent to ministries to generate institutional chaos and fuel local resentment towards the Atlantic Alliance.",
+      "fonti": [
+        {
+          "nome": "Mandiant - Ghostwriter InfoOps",
+          "url": "https://cloud.google.com/blog/topics/threat-intelligence/unc1151-linked-to-belarus-government/"
+        }
+      ]
+    },
+    {
+      "nome": "Hacking of Polish Politicians (2021)",
+      "descrizione": "The actor gained unauthorized access to the email accounts and social media profiles of dozens of high-profile Polish politicians from various parties. The accounts were used to publish radical messages against migrants, against the United States, and to discredit Warsaw's diplomatic standing, forcing the government to issue continuous emergency denials.",
+      "fonti": [
+        {
+          "nome": "VSquare - Hack and Leak scandal in Poland",
+          "url": "https://vsquare.org/behind-the-hack-and-leak-scandal-in-poland/"
+        }
+      ]
+    }
+  ]
+}

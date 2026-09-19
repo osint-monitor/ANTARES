@@ -1,0 +1,54 @@
+{
+  "nome": "Spamouflage (Dragonbridge)",
+  "tipo": "Pro-People's Republic of China State Influence Campaign (Gaslighting/Social Division)",
+  "descrizione": "A vast pro-China (PRC) state influence campaign targeting the international information environment. It uses widespread networks of inauthentic accounts, AI-generated videos with synthetic avatars, and mass spamming techniques to manipulate public debate, promote whataboutism and pro-PRC narratives, exploit social divisions, and weaken confidence in European and Western democratic institutions.",
+  "vettori_comunicativi": [
+    "Thousands of coordinated inauthentic accounts and sockpuppets distributed across major platforms including X, Meta, YouTube, and other international social-media networks",
+    "Massive text and comment spamming under posts by European and Western political leaders, journalists, media outlets, and public institutions",
+    "Production of AI-generated videos using synthetic avatars presented as apparently independent journalists, commentators, or news presenters",
+    "Amplification and hijacking of divisive hashtags linked to real political controversies, social protests, racial tensions, and geopolitical disputes in European and other democratic countries"
+  ],
+  "targeting_cognitivo": "International public opinion, European and Western voters, civil-rights and activist communities, journalists, policymakers, and Chinese diaspora communities. The campaign seeks to distract audiences from sensitive PRC-related issues, amplify divisions within democratic societies, and portray democratic governance as unstable, hypocritical, or ineffective.",
+  "tono_narrativo": "Paternalistic, critical, strongly whataboutist, and selectively praising. Highlights political dysfunction, social conflict, economic inequality, racial tensions, protests, and institutional failures in European and other Western democracies while presenting the PRC and alternative governance models as comparatively stable, efficient, pragmatic, or socially harmonious.",
+  "obiettivi_strategici_permanenti": [
+    "Divert international attention from human rights concerns, territorial disputes, geopolitical controversies, or internal political issues involving the PRC",
+    "Erode the perceived moral authority and attractiveness of European and Western democratic models by emphasizing their social, economic, and political crises",
+    "Pollute the international information ecosystem by saturating discussions with repetitive, low-quality, or coordinated content that reduces the visibility of authentic debate",
+    "Exploit existing divisions within European and Western societies to weaken public trust in democratic institutions, media organizations, and political leadership",
+    "Promote narratives favorable to the PRC and normalize alternative interpretations of international politics, governance, and economic development"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0146.007 - Automated Account Asset (Use accounts with automated behaviour)",
+    "T0087 - Develop Video-Based Content (Create false or misleading videos)",
+    "T0042 - Kernel of Truth (Embed real facts within misleading narratives)"
+  ],
+  "vulnerabilita_operative": [
+    "Heuristic anti-spam filters and cross-platform behavioural analysis to detect synchronized, repetitive, and inauthentic account activity",
+    "Public exposure and technical debunking of synthetic-media artifacts, including inconsistencies in AI-generated avatars, voices, and visual elements",
+    "Tracking temporal, linguistic, and behavioural publication patterns to identify coordinated account clusters and operational infrastructure",
+    "Cross-platform information sharing between European regulators, technology platforms, researchers, media organizations, and civil-society groups",
+    "Prebunking and media-literacy initiatives focused on coordinated inauthentic behaviour, synthetic media, and recurring whataboutist narratives"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "The Use of Fake AI Television Anchors (2023)",
+      "descrizione": "Spamouflage was one of the first state-linked influence campaigns to publicly experiment with generative Artificial Intelligence for political messaging. It used commercial synthetic-media tools to create fake newscasts branded as 'Wolf News' and presented photorealistic avatars speaking fluent English. The content criticized US domestic problems and portrayed Washington's policies as ineffective, using the appearance of an independent international news outlet to increase credibility.",
+      "fonti": [
+        {
+          "nome": "Graphika - Deepfake It Till You Make It",
+          "url": "https://graphika.com/reports/deepfake-it-till-you-make-it"
+        }
+      ]
+    },
+    {
+      "nome": "Attacks on the Western Mining Industry (2022)",
+      "descrizione": "The Dragonbridge network was mobilized against Western companies involved in the rare-earths sector, including Lynas Rare Earths and Appia Rare Earths. Inauthentic accounts presented themselves as local environmental activists and amplified allegations concerning ecological damage associated with mining projects. The campaign sought to influence public perceptions of the companies and reinforce narratives favourable to China's strategic position in the global rare-earth supply chain.",
+      "fonti": [
+        {
+          "nome": "Mandiant - Pro-PRC Info Ops Targeting Rare Earths",
+          "url": "https://cloud.google.com/blog/topics/threat-intelligence/dragonbridge-targets-rare-earths-mining-companies"
+        }
+      ]
+    }
+  ]
+}

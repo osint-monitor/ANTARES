@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+
+{% block title %}ANTARES - {{ _('dashboard_page_title') }}{% endblock %}
+
+{% block content %}
+<style>
+    .cyber-table-container {
+        background: rgba(8, 16, 40, 0.6);
+        border: 1px solid var(--border-color, rgba(0, 240, 255, 0.15));
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table-cyber {
+        margin-bottom: 0;
+        color: #a0aec0;
+        font-family: var(--bs-font-monospace);
+        font-size: 0.85rem;
+    }
+
+    .table-cyber thead th {
+        background: rgba(14, 28, 64, 0.9);
+        color: var(--bs-info);
+        border-bottom: 2px solid rgba(0, 240, 255, 0.3);
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 1rem;
+    }
+
+    .table-cyber tbody td {
+        background: transparent;
+        border-bottom: 1px solid rgba(0, 240, 255, 0.05);
+        padding: 1rem;
+        vertical-align: middle;
+    }
+
+    .table-cyber tbody tr:hover td {
+        background: rgba(0, 240, 255, 0.03);
+    }
+
+    .group-details {
+        background: rgba(5, 12, 28, 0.7);
+        border: 1px solid var(--border-color, rgba(0, 240, 255, 0.2));
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+    }
+
+    .group-summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.25rem;
+        background: rgba(10, 22, 50, 0.8);
+        cursor: pointer;
+        list-style: none;
+        transition: background 0.2s ease;
+    }
+    
+    .group-summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .group-summary:hover {
+        background: rgba(18, 36, 78, 0.9);
+    }
+
+    .group-details[open] .group-summary {
+        border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    }
+
+    /* Status Badges */
+    .badge-status-completed { background-color: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid #10b981; }
+    .badge-status-pending { background-color: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid #f59e0b; }
+    .badge-status-error { background-color: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid #ef4444; }
+    .badge-status-processing { background-color: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid #3b82f6; }
+</style>
+
+<div class="row justify-content-center my-4">
+    <div class="col-xl-11 col-lg-12">
+        
+        <!-- Header Page -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+            <div>
+                
+                <h1 class="h3 tech-header glow-cyan mb-1">{{ _('dashboard_title') }}</h1>
+                <p class="text-secondary mono m-0" style="font-size: 0.85rem;">{{ _('dashboard_subtitle') }}</p>
+            </div>
+            <div class="mt-3 mt-md-0">
+                <a href="{{ url_for('new_task') }}" class="btn btn-outline-info mono fw-bold px-4 py-2" style="font-size: 0.85rem; letter-spacing: 1px;">
+                    <i class="fa-solid fa-plus me-2"></i> {{ _('btn_new_sim') }}
+                </a>
+            </div>
+        </div>
+
+        <!-- SEZIONE 1: GRUPPI COMPARATIVI (MULTI-ATTORE) -->
+        {% if groups %}
+            <h4 class="h5 tech-header mb-3 text-light">
+                <i class="fa-solid fa-layer-group text-info me-2"></i>{{ _('multi_actor_comparisons') }}
+            </h4>
+            
+            {% for group in groups %}
+            <details class="group-details" {% if group.status != 'completed' %}open{% endif %}>
+                <summary class="group-summary">
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <!-- Group Status -->
+                        <span class="badge mono badge-status-{{ group.status | lower }} px-2 py-1" style="font-size: 0.7rem;">
+                            {{ group.status | upper }}
+                        </span>
+                        
+                        <!-- Group ID -->
+                        <strong class="mono text-light" style="font-size: 0.9rem; letter-spacing: 1px;">
+                            {{ _('group_label') }} {{ group.group_id[:8] | upper }}
+                        </strong>
+                        
+                        <!-- Group Info (Actors & Preview) -->
+                        <span class="text-secondary mono" style="font-size: 0.8rem;">
+                            <span class="text-info">{{ group.actor_count }} {{ _('actors_label') }}</span> <span class="mx-1">|</span> 
+                            {{ group.fact_text_preview | truncate(60, True, '...') }}
+                        </span>
+                    </div>
+                    
+                    <!-- Action Button for Group Matrix -->
+                    <a href="{{ url_for('show_compare', group_id=group.group_id) }}" class="btn btn-sm btn-cyber px-3 py-1" onclick="event.stopPropagation()">
+                        <i class="fa-solid fa-table-columns me-1"></i> {{ _('open_matrix') }}
+                    </a>
+                </summary>
+                
+                <div class="table-responsive">
+                    <table class="table table-cyber table-borderless">
+                        <thead>
+                            <tr>
+                                <th>{{ _('th_id') }}</th>
+                                <th>{{ _('th_status') }}</th>
+                                <th>{{ _('th_engine') }}</th>
+                                <th>{{ _('th_actor') }}</th>
+                                <th>{{ _('th_start') }}</th>
+                                <th>{{ _('th_end') }}</th>
+                                <th class="text-end">{{ _('th_action') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set tasks = group_tasks.get(group.group_id, []) %}
+                            {% for task in tasks %}
+                            <tr>
+                                <td class="text-info fw-bold">#{{ task.id }}</td>
+                                <td>
+                                    <span class="badge badge-status-{{ task.status | lower }}">{{ task.status | upper }}</span>
+                                </td>
+                                <td>
+                                    {% if task.backend == 'gemini' %}
+                                        <span class="text-info"><i class="fa-solid fa-cloud me-1"></i> GEMINI</span>
+                                    {% else %}
+                                        <span class="text-success"><i class="fa-solid fa-server me-1"></i> LOCAL</span>
+                                    {% endif %}
+                                </td>
+                                <td><span class="text-light">{{ task.actor_id }}</span></td>
+                                <td class="text-secondary">{{ task.started_at or '—' }}</td>
+                                <td class="text-secondary">{{ task.completed_at or '—' }}</td>
+                                <td class="text-end">
+                                    <a href="{{ url_for('show_status_page', task_id=task.id) }}" class="btn btn-sm btn-outline-secondary mono" style="font-size: 0.75rem;">
+                                        <i class="fa-solid fa-magnifying-glass"></i> {{ _('inspect_task') }}
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Spacer se ci sono entrambe le sezioni -->
+        {% if groups and orphan_tasks %}
+            <div class="my-5 border-top border-secondary border-opacity-25"></div>
+        {% endif %}
+
+        <!-- SEZIONE 2: TASK SINGOLI (ORFANI) -->
+        {% if orphan_tasks %}
+            <h4 class="h5 tech-header mb-3 text-light">
+                <i class="fa-solid fa-file-waveform text-info me-2"></i>{{ _('single_tasks') }}
+            </h4>
+            
+            <div class="cyber-table-container table-responsive mb-4">
+                <table class="table table-cyber table-borderless">
+                    <thead>
+                        <tr>
+                            <th>{{ _('th_id') }}</th>
+                            <th>{{ _('th_status') }}</th>
+                            <th>{{ _('th_engine') }}</th>
+                            <th>{{ _('th_actor') }}</th>
+                            <th style="min-width: 250px;">{{ _('th_event') }}</th>
+                            <th>{{ _('th_start') }}</th>
+                            <th>{{ _('th_end') }}</th>
+                            <th class="text-end">{{ _('th_action') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for task in orphan_tasks %}
+                        <tr>
+                            <td class="text-info fw-bold">#{{ task.id }}</td>
+                            <td>
+                                <span class="badge badge-status-{{ task.status | lower }}">{{ task.status | upper }}</span>
+                            </td>
+                            <td>
+                                {% if task.backend == 'gemini' %}
+                                    <span class="text-info"><i class="fa-solid fa-cloud me-1"></i> GEMINI</span>
+                                {% else %}
+                                    <span class="text-success"><i class="fa-solid fa-server me-1"></i> LOCAL</span>
+                                {% endif %}
+                            </td>
+                            <td><span class="text-light">{{ task.actor_id }}</span></td>
+                            <td class="text-secondary" title="{{ task.fact_text }}">{{ task.fact_text | truncate(50, True, '...') }}</td>
+                            <td class="text-secondary">{{ task.started_at or '—' }}</td>
+                            <td class="text-secondary">{{ task.completed_at or '—' }}</td>
+                            <td class="text-end">
+                                <a href="{{ url_for('show_status_page', task_id=task.id) }}" class="btn btn-sm btn-outline-secondary mono" style="font-size: 0.75rem;">
+                                    <i class="fa-solid fa-magnifying-glass"></i> {{ _('inspect_task') }}
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        <!-- SEZIONE 3: STATO VUOTO -->
+        {% if not groups and not orphan_tasks %}
+            <div class="cyber-card text-center py-5">
+                <i class="fa-solid fa-satellite-dish text-secondary mb-3" style="font-size: 3rem; opacity: 0.3;"></i>
+                <h5 class="mono text-muted text-uppercase" style="letter-spacing: 2px;">{{ _('no_tasks_active') }}</h5>
+                <p class="text-secondary mb-4">{{ _('no_tasks_active_desc') }}</p>
+                <a href="{{ url_for('new_task') }}" class="btn btn-cyber px-4 py-2">
+                    <i class="fa-solid fa-play me-2"></i> {{ _('btn_start_simulation') }}
+                </a>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

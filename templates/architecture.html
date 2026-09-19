@@ -1,0 +1,492 @@
+{% extends "base.html" %}
+
+{% block title %}ANTARES - {{ _('System Architecture') }}{% endblock %}
+
+{% block content %}
+<style>
+    /* =========================================================
+       ARCHITECTURE DIAGRAMS & PIPELINE STYLES
+       ========================================================= */
+
+    /* Hardware & Environment Strip */
+    .hw-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--border-color);
+        background: rgba(5, 12, 27, 0.75);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .hw-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        border-right: 1px solid var(--border-color);
+        transition: background 0.2s ease;
+    }
+
+    .hw-item:last-child { border-right: 0; }
+
+    .hw-item:hover {
+        background: rgba(0, 242, 254, 0.04);
+    }
+
+    .hw-icon {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        color: var(--accent-cyan);
+        background: rgba(0, 242, 254, 0.05);
+        border: 1px solid rgba(0, 242, 254, 0.3);
+        border-radius: 4px;
+        font-size: 0.95rem;
+    }
+
+    .hw-item.hw-warn .hw-icon {
+        color: var(--accent-orange);
+        background: rgba(255, 159, 0, 0.06);
+        border-color: rgba(255, 159, 0, 0.35);
+    }
+
+    .hw-copy { min-width: 0; }
+
+    .hw-label-top {
+        display: block;
+        font-family: var(--terminal-font);
+        font-size: 0.66rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--accent-cyan);
+        margin-bottom: 2px;
+    }
+
+    .hw-value {
+        display: block;
+        font-family: var(--terminal-font);
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--text-primary);
+        white-space: nowrap;
+    }
+
+    .hw-label {
+        display: block;
+        margin-top: 2px;
+        font-size: 0.63rem;
+        letter-spacing: 0.4px;
+        color: var(--text-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    @media (max-width: 767.98px) {
+        .hw-strip { grid-template-columns: repeat(2, 1fr); }
+        .hw-item:nth-child(2) { border-right: 0; }
+        .hw-item:nth-child(-n+2) { border-bottom: 1px solid var(--border-color); }
+    }
+
+    @media (max-width: 480px) {
+        .hw-strip { grid-template-columns: 1fr; }
+        .hw-item { border-right: 0 !important; border-bottom: 1px solid var(--border-color); }
+        .hw-item:last-child { border-bottom: 0; }
+    }
+
+    /* Pipeline Flow Diagram Container */
+    .pipeline-container {
+        display: grid;
+        grid-template-columns: 1fr 32px 1fr 32px 1fr 32px 1fr;
+        align-items: stretch;
+        gap: 0;
+        padding: 0.5rem 0 1rem;
+    }
+
+    .pipeline-node {
+        background: rgba(10, 19, 42, 0.95);
+        border: 1px solid var(--border-color);
+        border-top: 3px solid var(--accent-cyan);
+        border-radius: 6px;
+        padding: 1.25rem;
+        position: relative;
+        min-width: 0;
+        height: 100%;
+        transition: all 0.3s ease;
+    }
+
+    .pipeline-node:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        border-color: var(--accent-cyan);
+    }
+
+    .pipeline-node.node-red { border-top-color: var(--accent-red); }
+    .pipeline-node.node-blue { border-top-color: var(--accent-blue); }
+    .pipeline-node.node-green { border-top-color: var(--accent-green); }
+    .pipeline-node.node-orange { border-top-color: var(--accent-orange); }
+
+    .node-number {
+        font-family: var(--terminal-font);
+        font-size: 0.75rem;
+        color: var(--accent-cyan);
+        letter-spacing: 1.5px;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .node-title {
+        font-family: var(--ui-font);
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: #f3f8ff;
+        margin-bottom: 0.5rem;
+    }
+
+    .node-desc {
+        font-size: 0.8rem;
+        color: #8fa4c1;
+        line-height: 1.45;
+        margin-bottom: 0;
+    }
+
+    /* Directional Connector Arrows */
+    .flow-arrow-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flow-arrow {
+        color: var(--accent-cyan);
+        font-size: 1.1rem;
+        animation: pulse-arrow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-arrow {
+        0%, 100% { opacity: 0.4; transform: translateX(0); }
+        50% { opacity: 1; transform: translateX(4px); }
+    }
+
+    @media (max-width: 991.98px) {
+        .pipeline-container {
+            grid-template-columns: 1fr;
+            gap: 0.85rem;
+        }
+        .pipeline-container .flow-arrow-container {
+            transform: rotate(90deg);
+            padding: 2px 0;
+        }
+        .flow-arrow {
+            animation: pulse-arrow-v 2s infinite ease-in-out;
+        }
+        @keyframes pulse-arrow-v {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+    }
+
+    /* Dual Engine Split Block (Sequential Execution) */
+    .engine-split-box {
+        background: rgba(4, 8, 20, 0.6);
+        border: 1px dashed var(--border-color);
+        border-radius: 6px;
+        padding: 1rem;
+    }
+
+    .engine-card {
+        background: rgba(10, 17, 40, 0.7);
+        border: 1px solid var(--border-color);
+        border-left: 3px solid var(--accent-cyan);
+        border-radius: 4px;
+        padding: 0.9rem 1rem;
+    }
+
+    .engine-card.engine-card-red { border-left-color: var(--accent-red); }
+    .engine-card.engine-card-green { border-left-color: var(--accent-green); }
+
+    .engine-flow-connector {
+        display: flex;
+        justify-content: center;
+        padding: 6px 0;
+        color: var(--accent-cyan);
+        opacity: 0.7;
+        font-size: 0.9rem;
+    }
+
+    /* Feature list (bullet replacement) */
+    .feature-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .feature-list li {
+        position: relative;
+        padding-left: 20px;
+    }
+
+    .feature-list li::before {
+        content: '\203A';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--accent-cyan);
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    /* Export layer items */
+    .export-item {
+        padding: 0.65rem 0.85rem;
+        border-radius: 4px;
+        background: rgba(6, 12, 32, 0.6);
+        border: 1px solid var(--border-color);
+        border-left: 3px solid var(--border-color);
+        transition: all 0.2s ease;
+    }
+
+    .export-item:hover {
+        border-color: var(--accent-cyan);
+        background: rgba(10, 17, 40, 0.85);
+        transform: translateX(2px);
+    }
+
+    .export-item.export-pdf { border-left-color: var(--accent-red); }
+    .export-item.export-stix { border-left-color: var(--accent-cyan); }
+    .export-item.export-misp { border-left-color: var(--accent-orange); }
+
+    .section-divider-glow {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+        margin: 2.5rem 0;
+        opacity: 0.4;
+    }
+</style>
+
+<div class="row justify-content-center my-4">
+    <div class="col-xl-11 col-lg-12">
+
+        <!-- HEADER BANNER -->
+        <div class="cyber-card scanner-container text-center py-4 mb-4">
+            
+            <h1 class="display-6 tech-header glow-cyan mb-2">
+                {{ _('ANTARES ARCHITECTURE') }}
+            </h1>
+            <p class="text-secondary mx-auto mb-0" style="max-width: 750px; font-size: 0.9rem;">
+                {{ _('Adversarial Narrative Threat Analysis & Response Evaluation System — Resource-optimized cognitive simulation framework for VPS deployment.') }}
+            </p>
+        </div>
+
+        <!-- HARDWARE & ENVIRONMENT HARDENING MATRIX -->
+        <div class="hw-strip mb-4">
+            <div class="hw-item">
+                <div class="hw-icon"><i class="fa-solid fa-microchip"></i></div>
+                <div class="hw-copy">
+                    <span class="hw-label-top">{{ _('HOST CPU') }}</span>
+                    <span class="hw-value mono">4 CORE</span>
+                    <span class="hw-label">{{ _('OPTIMIZED CONTEXT WINDOW') }}</span>
+                </div>
+            </div>
+            <div class="hw-item">
+                <div class="hw-icon"><i class="fa-solid fa-memory"></i></div>
+                <div class="hw-copy">
+                    <span class="hw-label-top">{{ _('RAM ALLOCATION') }}</span>
+                    <span class="hw-value mono">8 GB RAM</span>
+                    <span class="hw-label">{{ _('CPU INFERENCE BOUNDED') }}</span>
+                </div>
+            </div>
+            <div class="hw-item">
+                <div class="hw-icon"><i class="fa-solid fa-ban"></i></div>
+                <div class="hw-copy">
+                    <span class="hw-label-top">{{ _('ACCELERATION') }}</span>
+                    <span class="hw-value mono text-orange">{{ _('NO GPU') }}</span>
+                    <span class="hw-label">{{ _('QUANTIZED LLM EXECUTOR') }}</span>
+                </div>
+            </div>
+            <div class="hw-item">
+                <div class="hw-icon"><i class="fa-solid fa-server"></i></div>
+                <div class="hw-copy">
+                    <span class="hw-label-top">{{ _('ENVIRONMENT') }}</span>
+                    <span class="hw-value mono text-cyan">{{ _('SECURE VPS') }}</span>
+                    <span class="hw-label">{{ _('ISOLATED SYSTEMD WORKER') }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCHEMA DIAGRAMMA DI FLUSSO PRINCIPALE -->
+        <div class="cyber-card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-25 pb-2">
+                <h3 class="panel-title m-0 glow-cyan">
+                    <i class="fa-solid fa-diagram-project me-2"></i>
+                    {{ _('END-TO-END PIPELINE SCHEMATIC') }}
+                </h3>
+                
+            </div>
+
+            <!-- Flowchart Grid Layout -->
+            <div class="pipeline-container">
+
+                <!-- STAGE 1: INGESTION & I18N -->
+                <div class="pipeline-node">
+                    <span class="node-number">01 // {{ _('INPUT & CONTEXT') }}</span>
+                    <div class="node-title"><i class="fa-solid fa-file-import text-info me-2"></i>{{ _('Ingestion & Prompting') }}</div>
+                    <p class="node-desc">
+                        {{ _('Paste news or press releases. The <strong>ITA-ENG Switch</strong> dynamically selects prompts tailored to the specific vulnerabilities and interests of the target audience.') | safe }}
+                    </p>
+                </div>
+
+                <div class="flow-arrow-container"><i class="fa-solid fa-chevron-right flow-arrow"></i></div>
+
+                <!-- STAGE 2: MATCHING & JSON PROFILES -->
+                <div class="pipeline-node">
+                    <span class="node-number">02 // {{ _('INTEL MATCHING') }}</span>
+                    <div class="node-title"><i class="fa-solid fa-fingerprint text-info me-2"></i>{{ _('Actor Profiling') }}</div>
+                    <p class="node-desc">
+                        {{ _('Profile extraction from JSON library. A <strong>Narrative Matching</strong> engine based on semantic embeddings calculates affinity with hostile actors (APT28, Doppelgänger, etc.).') | safe }}
+                    </p>
+                </div>
+
+                <div class="flow-arrow-container"><i class="fa-solid fa-chevron-right flow-arrow"></i></div>
+
+                <!-- STAGE 3: QUEUE & WORKER -->
+                <div class="pipeline-node">
+                    <span class="node-number">03 // {{ _('QUEUE & DAEMON') }}</span>
+                    <div class="node-title"><i class="fa-solid fa-list-check text-orange me-2"></i>{{ _('SQLite Queue & Systemd') }}</div>
+                    <p class="node-desc">
+                        {{ _('Task saved to SQLite DB (supports multiple queuing). A <strong>Python systemd worker</strong> daemon fetches analyses in sequential FIFO mode.') | safe }}
+                    </p>
+                </div>
+
+                <div class="flow-arrow-container"><i class="fa-solid fa-chevron-right flow-arrow"></i></div>
+
+                <!-- STAGE 4: DUAL SIMULATION & EXPORT -->
+                <div class="pipeline-node">
+                    <span class="node-number">04 // {{ _('ORCHESTRATION') }}</span>
+                    <div class="node-title"><i class="fa-solid fa-shield-cat text-green me-2"></i>{{ _('Simulation & Export') }}</div>
+                    <p class="node-desc">
+                        {{ _('Sequential execution of <strong>Red Team (PSYOPS)</strong> and <strong>Blue Team (FIMI)</strong>. Polling rendering and export to PDF, STIX 2.1, and MISP.') | safe }}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DEEP-DIVE SECTIONS: COMPONENT ARCHITECTURE -->
+        <div class="row g-4">
+
+            <!-- RED TEAM VS BLUE TEAM PIPELINE -->
+            <div class="col-lg-6">
+                <div class="cyber-card h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-25 pb-2">
+                        <h4 class="panel-title m-0 glow-cyan">
+                            <i class="fa-solid fa-arrows-split-up-and-left me-2"></i>
+                            {{ _('Sequential Execution Logic') }}
+                        </h4>
+                    </div>
+
+                    <div class="engine-split-box">
+                        <div class="engine-card engine-card-red">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge badge-tech status-high mono">{{ _('PHASE 1') }}</span>
+                                <span class="mono text-red fw-bold" style="font-size: 0.85rem;">{{ _('RED TEAM SIMULATION (Weaponization)') }}</span>
+                            </div>
+                            <p class="text-secondary mb-0" style="font-size: 0.8rem; line-height: 1.5;">
+                                {{ _('Simulates cognitive attacks: extracts PSYOPS objectives, target audience, social payload, DISARM techniques, and calculates JSON-formatted Risk Assessment.') }}
+                            </p>
+                        </div>
+
+                        <div class="engine-flow-connector">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+
+                        <div class="engine-card engine-card-blue">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge badge-tech status-low mono">{{ _('PHASE 2') }}</span>
+                                <span class="mono text-green fw-bold" style="font-size: 0.85rem;">{{ _('BLUE TEAM PLAYBOOK (FIMI Countermeasures)') }}</span>
+                            </div>
+                            <p class="text-secondary mb-0" style="font-size: 0.8rem; line-height: 1.5;">
+                                {{ _('Generates defensive response: prebunking counter-narratives, media directives, tactical debunking, resilience indicators, and inter-agency escalation.') }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPARATIVE ENGINE & PERSISTENCE -->
+            <div class="col-lg-6">
+                <div class="cyber-card h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-25 pb-2">
+                        <h4 class="panel-title m-0 glow-cyan">
+                            <i class="fa-solid fa-layer-group me-2"></i>
+                            {{ _('Multi-Actor Comparison Engine') }}
+                        </h4>
+                    </div>
+                    <p class="text-secondary" style="font-size: 0.85rem; line-height: 1.5;">
+                        {{ _('Allows observing how the same news is weaponized by different hostile actors.') }}
+                    </p>
+                    <ul class="feature-list text-secondary" style="font-size: 0.8rem; line-height: 1.5;">
+                        <li>{{ _('<strong>Event Cloning:</strong> Duplication of an existing task across 1-3 additional actors.') | safe }}</li>
+                        <li>{{ _('<strong>Parallel Matrix:</strong> Side-by-side shared visualization of Red Team and Blue Playbook.') | safe }}</li>
+                        <li>{{ _('<strong>Persistence & Sync:</strong> Database saving with real-time progress status.') | safe }}</li>
+                        <li>{{ _('<strong>Matrix Multi-Export:</strong> Complete matrix export in PDF and CSV formats.') | safe }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- EXPORT LAYER & THREAT INTEL STANDARDS -->
+            <div class="col-lg-12">
+                <div class="cyber-card h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-25 pb-2">
+                        <h4 class="panel-title m-0 glow-cyan">
+                            <i class="fa-solid fa-file-export me-2"></i>
+                            {{ _('Interoperability & Threat Intel Export') }}
+                        </h4>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                        <div class="export-item export-pdf h-100">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="mono text-light fw-bold" style="font-size: 0.8rem;"><i class="fa-solid fa-file-pdf text-danger me-2"></i>{{ _('PDF REPORT') }}</span>
+                                <span class="badge bg-secondary mono" style="font-size: 0.65rem;">{{ _('EXECUTIVE') }}</span>
+                            </div>
+                            <small class="text-secondary" style="font-size: 0.72rem;">{{ _('Formatted document for operational use in security briefings.') }}</small>
+                        </div>
+                        </div>
+
+                        <div class="col-md-4">
+                        <div class="export-item export-stix h-100">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="mono text-light fw-bold" style="font-size: 0.8rem;"><i class="fa-solid fa-code text-info me-2"></i>{{ _('STIX 2.1 JSON') }}</span>
+                                <span class="badge bg-secondary mono" style="font-size: 0.65rem;">{{ _('CTI STANDARD') }}</span>
+                            </div>
+                            <small class="text-secondary" style="font-size: 0.72rem;">{{ _('JSON bundle compliant with international Threat Intelligence standards.') }}</small>
+                        </div>
+                        </div>
+
+                        <div class="col-md-4">
+                        <div class="export-item export-misp h-100">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="mono text-light fw-bold" style="font-size: 0.8rem;"><i class="fa-solid fa-share-nodes text-warning me-2"></i>{{ _('MISP EVENT') }}</span>
+                                <span class="badge bg-secondary mono" style="font-size: 0.65rem;">{{ _('AUTOMATED CORRELATION') }}</span>
+                            </div>
+                            <small class="text-secondary" style="font-size: 0.72rem;">{{ _('Structured event with native attributes and <code>microblog</code> object for automated correlation.') | safe }}</small>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section-divider-glow"></div>
+
+    </div>
+</div>
+{% endblock %}

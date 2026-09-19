@@ -1,0 +1,21 @@
+Esegui un'analisi completa di Red Teaming Cognitivo basandoti su questo scenario.
+
+------------------------------------------------------------------
+PROFILO AVVERSARIO: {nome}
+VULNERABILITÀ NOTE DELL'ATTORE: {vulnerabilita_operative}
+EVENTO REALE:
+{fact_text}
+------------------------------------------------------------------
+
+Genera un oggetto JSON valido con le seguenti 9 chiavi esatte in minuscolo. I valori devono essere stringhe di testo semplici e coincise.
+
+{{
+"psyops_objectives": "Definisci l'obiettivo psicologico e il cambiamento comportamentale mirato nella TA italiana.",
+"target_audience_analysis": "Isola la specifica Target Audience (TA) italiana e le sue vulnerabilità psicosociali immediate.",
+"product_development": "Elenca 3 azioni operative/tattiche tipiche di questo attore per colpire il tema del testo.",
+"weak_spots": "Basandoti sulle vulnerabilità operative note dell'attore, indica quale di queste risulta più esposta in QUESTO scenario specifico.",
+"social_payload": "Scrivi un esempio reale di post (Telegram/X/Facebook, max 50 parole) che l'attore userebbe, includendo un titolo clickbait aggressivo.",
+"indicators_of_influence": "Elenca 3 hashtag o parole chiave specifiche e manipolatorie che la rete di bot dell'attore userebbe per l'amplificazione.",
+"disarm_techniques": "Seleziona 1-2 tecniche DISARM tra quelle ricorrenti di questo attore, indicando come si applicano a questo evento specifico.",
+"risk_assessment": "Assegna un punteggio da 1 a 5 per VIRULENZA e IMPATTO STRATEGICO (Es: Virulenza: 4/5, Impatto: 3/5 - spiegando il motivo in una riga)."
+}}

@@ -1,0 +1,52 @@
+{
+  "nome": "CyberBerkut",
+  "tipo": "State Hacktivism / Information Warfare (Pro-Russian)",
+  "descrizione": "Pro-Russian threat group and hacktivist front specializing in information warfare operations. It combines high-impact DDoS attacks with cyberespionage, hack-and-leak operations, and the dissemination of forged documents to delegitimize European and Western institutions, undermine trust in NATO and the EU, and weaken political and public support for Ukraine.",
+  "vettori_comunicativi": [
+    "Coordinated demonstrative DDoS attacks against European governmental and institutional websites with high visual and symbolic impact",
+    "Leaks of altered or forged internal documents portraying European governments, security institutions, or international organizations as corrupt or deceptive",
+    "Institutional discrediting and character assassination campaigns via Telegram and other pro-Russian online channels"
+  ],
+  "targeting_cognitivo": "European public opinion, national political constituencies skeptical of the EU and NATO, citizens concerned about energy prices, inflation, migration, military spending, and the economic consequences of support for Ukraine.",
+  "tono_narrativo": "Inquisitorial, documentary, bureaucratic-scandalous. Pretends to act as an independent whistleblowing group exposing alleged corruption, incompetence, and subservience of European governments to supranational or transatlantic institutions such as the EU and NATO.",
+  "obiettivi_strategici_permanenti": [
+    "Trigger friction and distrust between national governments, European institutions, and Brussels leadership",
+    "Discredit European economic, logistical, political, and military support for Ukraine",
+    "Amplify socio-economic anxiety around inflation, energy costs, sanctions, and public spending in order to blame European and national institutions",
+    "Undermine confidence in European and transatlantic security structures by portraying them as ineffective or vulnerable"
+  ],
+  "tecniche_disarm_ricorrenti": [
+    "T0083 - Integrate Target Audience Vulnerabilities into Narrative (Integrate fears and vulnerabilities into narratives)",
+    "T0085 - Develop Text-Based Content (Create false or misleading textual content)",
+    "T0044 - Seed Distortions (Spread misleading messages around an event)"
+  ],
+  "vulnerabilita_operative": [
+    "Timely forensic analysis demonstrating the falsity or manipulation of published leaks and forged documents",
+    "Coordinated disruption of DDoS infrastructure and rapid mitigation of attacks against European public-sector websites",
+    "Government prebunking campaigns addressing predictable narratives around energy prices, inflation, sanctions, military aid, and European economic constraints",
+    "Cross-border information-sharing between European cybersecurity agencies and institutions to identify recurring CyberBerkut infrastructure and narratives",
+    "Rapid strategic communication by affected institutions to reduce the symbolic and political impact of demonstrative cyberattacks"
+  ],
+  "operazioni_note": [
+    {
+      "nome": "Sabotage of Ukrainian Elections (2014)",
+      "descrizione": "On the eve of the Ukrainian presidential elections, CyberBerkut compromised the servers of the Central Election Commission (CEC). The goal was not only to destroy data, but to publish pre-fabricated election results in which a far-right candidate won, in order to delegitimize the democratic process in the eyes of international media and provide a narrative pretext for Russia.",
+      "fonti": [
+        {
+          "nome": "CyberLaw - Ukraine election interference",
+          "url": "https://cyberlaw.ccdcoe.org/wiki/Ukrainian_parliamentary_election_interference_(2014)"
+        }
+      ]
+    },
+    {
+      "nome": "Hacking of the German Chancellery (2015)",
+      "descrizione": "The group launched prolonged DDoS attacks that took down the websites of the Bundestag and Chancellor Angela Merkel. The cognitive operation, claimed with triumphant press releases, aimed to humiliate the German government to punish it for supporting Kyiv and to demonstrate the vulnerability of Western infrastructures.",
+      "fonti": [
+        {
+          "nome": "Guardian - German Chancellery hacking",
+          "url": "https://www.theguardian.com/world/2015/jan/07/pro-russian-group-cyber-attack-german-government-websites-angela-merkel-ukraine-prime-minister"
+        }
+      ]
+    }
+  ]
+}

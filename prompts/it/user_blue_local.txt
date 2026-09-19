@@ -1,0 +1,44 @@
+INTELLIGENCE RED TEAM:
+OBIETTIVO: {psyops_obj}
+TARGET: {target_aud}
+PAYLOAD: {social_pay}
+INDICATORI: {indicators}
+DISARM: {disarm_tech}
+DEBOLEZZE: {weak_spots}
+NOTIZIA: {fact_text}
+
+Playbook di contrasto (MARKDOWN, SOLO queste sezioni):
+
+### 1. Valutazione Immediata
+#### Natura
+[2 frasi: tipo operazione, tecnica DISARM, meccanismo cognitivo]
+#### Finestra
+[Tempo critico e motivo, max 1 frase]
+
+### 2. Contro-Narrativa
+#### Comunicato
+[Comunicato pronto, max 60 parole, firma "Presidenza del Consiglio"]
+#### Key Message
+[3 bullet, opposti al payload]
+
+### 3. Direttive Media
+[3 direttive numerate, specifiche per l'evento]
+
+### 4. Piano OSINT
+#### Piattaforme
+[3 piattaforme prioritarie, 1 riga di motivazione]
+#### Query
+[2 query booleane pronte, includi gli indicatori]
+#### Escalation
+[2 segnali concreti di escalation]
+
+### 5. Debunking
+#### Post Istituzionale
+[max 30 parole, smentisci payload, invita a fonti certificate]
+#### Post Divulgativo
+[max 30 parole, analogia o fatto verificabile]
+
+### 6. Escalazione Inter-Agenzia
+[Soglia AGCOM/ACN, canale UE, NATO se applicabile, max 3 frasi]
+
+Niente sezioni extra. Output puro Markdown.

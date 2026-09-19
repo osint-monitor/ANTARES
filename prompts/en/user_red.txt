@@ -1,0 +1,21 @@
+Perform a comprehensive Cognitive Red Teaming analysis based on this scenario.
+
+------------------------------------------------------------------
+ADVERSARY PROFILE: {nome}
+KNOWN ACTOR VULNERABILITIES: {vulnerabilita_operative}
+REAL-WORLD EVENT:
+{fact_text}
+------------------------------------------------------------------
+
+Generate a valid JSON object with the following exact keys in lowercase. The values must be concise, plain text strings in ENGLISH language.
+
+{{
+"psyops_objectives": "Define the targeted psychological objective and behavioral shift aimed at the target audience.",
+"target_audience_analysis": "Identify the specific target audience (TA) and their immediate psychosocial vulnerabilities.",
+"product_development": "List 3 typical tactical/operational actions this actor would execute to weaponize this event.",
+"weak_spots": "Based on the actor's known operational vulnerabilities, indicate which one is most exposed in THIS specific scenario.",
+"social_payload": "Write a realistic social media post sample (Telegram/X/Facebook, max 50 words) the actor would deploy, including an aggressive clickbait headline.",
+"indicators_of_influence": "List 3 specific manipulative hashtags or keyphrases that the actor's botnet/proxies would use for amplification.",
+"disarm_techniques": "Select 1-2 DISARM techniques among this actor's recurring ones, explaining how they apply to this specific event.",
+"risk_assessment": "Assign a score from 1 to 5 for VIRULENCE and STRATEGIC IMPACT (e.g., Virulence: 4/5, Impact: 3/5 - explaining the rationale in one line)."
+}}
