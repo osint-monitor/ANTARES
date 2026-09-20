@@ -3,7 +3,7 @@ import os
 import json
 import io
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import re
 import sqlite3
 from dotenv import load_dotenv
@@ -31,6 +31,14 @@ app = Flask(__name__)
 
 DB_NAME = 'antares.db'
 init_db()
+
+app.config.update(
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE='Lax',
+    PERMANENT_SESSION_LIFETIME=timedelta(hours=2),
+    MAX_CONTENT_LENGTH=1 * 1024 * 1024,  # 1MB
+)
 
 # Reindirizza il traffico verso ANTARES
 application = DispatcherMiddleware(
@@ -155,6 +163,7 @@ def get_actor_embeddings(lang):
 
 
 @app.route('/api/suggest-actor', methods=['POST'])
+@limiter.limit("10 per minute")
 def api_suggest_actor():
     """Suggerisce i 3 threat actor più affini semanticamente al testo inserito."""
     data = request.get_json(silent=True) or {}
@@ -386,6 +395,7 @@ def api_group_status(group_id):
 
 
 @app.route('/api/export/stix/<int:task_id>', methods=['GET'])
+@limiter.limit("20 per minute")
 def export_stix(task_id):
     try:
         task = get_task_status(task_id)
@@ -494,6 +504,7 @@ def export_stix(task_id):
         return jsonify({"error": f"Errore durante la generazione STIX: {str(e)}"}), 500
 
 @app.route('/api/export/pdf/<int:task_id>', methods=['GET'])
+@limiter.limit("20 per minute")
 def export_pdf(task_id):
     try:
         task = get_task_status(task_id)
@@ -517,6 +528,7 @@ def export_pdf(task_id):
         return jsonify({"error": f"Errore durante la generazione del PDF: {str(e)}"}), 500
 
 @app.route('/api/export/misp/<int:task_id>', methods=['GET'])
+@limiter.limit("20 per minute")
 def export_misp(task_id):
     try:
         task = get_task_status(task_id)
@@ -540,6 +552,7 @@ def export_misp(task_id):
 
 # Rotta per generare ed esportare la Matrice Comparativa in PDF
 @app.route('/api/export/pdf-compare/<group_id>', methods=['GET'])
+@limiter.limit("20 per minute")
 def export_pdf_compare(group_id):
     try:
         group = get_group(group_id)
@@ -566,4 +579,4 @@ def export_pdf_compare(group_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=os.getenv("FLASK_DEBUG", "false").lower() == "true")
