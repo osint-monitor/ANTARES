@@ -35,7 +35,7 @@ To handle long-running AI tasks without blocking the UI, ANTARES uses an asynchr
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/osint-monitor/ANTARES.git](https://github.com/osint-monitor/ANTARES.git)
+git clone https://github.com/osint-monitor/ANTARES.git
 cd ANTARES
 ```
 
@@ -58,14 +58,22 @@ If you plan to use the local engine, download your preferred GGUF model (e.g., L
 
 ### 5. Run the Application
 You need to start both the background worker and the web server.
-For production, it is recommended to set these up as systemd services.
-  ```bash
-  python worker_unified.py
+For **local development**:
+```bash
+python worker_unified.py
 python app.py
-  ```
+```
+
+For **production deployment**, use Gunicorn behind a reverse proxy (Apache/Nginx) with systemd services, not the built-in Flask dev server.
+
 ### 🛡️ Demo Mode vs Admin Mode
 By default, the platform can be exposed to the internet in Demo Mode (Read-Only).
 In Demo Mode, visitors can explore telemetry dashboards, the multi-actor matrix, and the Threat Library, but the creation of new tasks is disabled to prevent resource abuse. To ingest new data, users must log in as Administrators.
+
+### ⚠️ Responsible Use
+ANTARES is a defensive research tool, not a disinformation generator. Every simulated attack (Red Team phase) is paired with a corresponding defensive countermeasure (Blue Team phase) by design. Threat actor profiles are built from publicly documented TTPs already mapped by MITRE ATT&CK and DISARM — the same sources used by CTI analysts worldwide.
+
+If you fork or build on this code, please keep that defensive framing intact.
 
 ### 🤝 Contributing
 Contributions are welcome! If you have ideas for new threat actor profiles, better prompts for the local LLM, or new export formats, feel free to open an Issue or submit a Pull Request.
