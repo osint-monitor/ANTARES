@@ -17,6 +17,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, '.env'))
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 gemini_model = "gemini-3.5-flash"
+gemini_model_fallback = "gemini-2.5-flash"  # usato se si esaurisce la quota giornaliera (RPD) del modello primario
+
 
 # Filtri di sicurezza disattivati per Red Teaming
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
@@ -26,6 +28,31 @@ safety_settings = {
     HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
     HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
 }
+
+
+def _call_gemini_with_retry(model, prompt, generation_config, phase_label, max_retries=5):
+    """
+    Esegue generate_content gestendo il 429 (ResourceExhausted) con backoff.
+    Rispetta il retry_delay suggerito dall'API quando disponibile, altrimenti
+    usa un backoff esponenziale (5s, 10s, 20s, 40s, 80s...).
+    """
+    for attempt in range(1, max_retries + 1):
+        try:
+            return model.generate_content(prompt, generation_config=generation_config)
+        except ResourceExhausted as e:
+            # Prova a leggere il retry_delay indicato da Google, altrimenti backoff esponenziale
+            retry_seconds = getattr(getattr(e, "retry_delay", None), "seconds", None)
+            if not retry_seconds:
+                retry_seconds = 5 * (2 ** (attempt - 1))
+
+            if attempt >= max_retries:
+                print(f"[-] [{phase_label}] Quota esaurita, tentativi massimi ({max_retries}) raggiunti. Rilancio errore.")
+                raise
+
+            print(f"[!] [{phase_label}] Rate limit (429) tentativo {attempt}/{max_retries}. "
+                  f"Attendo {retry_seconds}s prima di riprovare...")
+            time.sleep(retry_seconds)
+    raise RuntimeError(f"[{phase_label}] Retry loop terminato senza risultato")
 
 
 def _check_truncation(response, text, phase_label):
@@ -181,9 +208,11 @@ def process_pending_tasks():
         if backend == 'gemini':
             print("[*] Chiamata a Gemini Flash (FASE 1)...")
             model_red = genai.GenerativeModel(model_name=gemini_model, system_instruction=system_prompt_red, safety_settings=safety_settings)
-            response_red = model_red.generate_content(
+            response_red = _call_gemini_with_retry(
+                model_red,
                 user_prompt_red,
-                generation_config=genai.types.GenerationConfig(response_mime_type="application/json", temperature=0.1, max_output_tokens=4000)
+                genai.types.GenerationConfig(response_mime_type="application/json", temperature=0.1, max_output_tokens=4000),
+                "RED"
             )
             red_team_response = response_red.text
             red_team_response = _check_truncation(response_red, red_team_response, "RED")
@@ -305,9 +334,11 @@ def process_pending_tasks():
         if backend == 'gemini':
             print("[*] Chiamata a Gemini Flash (FASE 2)...")
             model_blue = genai.GenerativeModel(model_name=gemini_model, system_instruction=system_prompt_blue, safety_settings=safety_settings)
-            response_blue = model_blue.generate_content(
+            response_blue = _call_gemini_with_retry(
+                model_blue,
                 user_prompt_blue,
-                generation_config=genai.types.GenerationConfig(temperature=0.25, max_output_tokens=8192)
+                genai.types.GenerationConfig(temperature=0.25, max_output_tokens=8192),
+                "BLUE"
             )
             blue_team_response = response_blue.text
             blue_team_response = _check_truncation(response_blue, blue_team_response, "BLUE")
