@@ -30,30 +30,47 @@ safety_settings = {
 }
 
 
-def _call_gemini_with_retry(model, prompt, generation_config, phase_label, max_retries=5):
+def _call_gemini_with_retry(prompt, generation_config, phase_label, system_instruction=None):
     """
-    Esegue generate_content gestendo il 429 (ResourceExhausted) con backoff.
-    Rispetta il retry_delay suggerito dall'API quando disponibile, altrimenti
-    usa un backoff esponenziale (5s, 10s, 20s, 40s, 80s...).
+    Esegue generate_content gestendo il 429 (ResourceExhausted).
+    Se rileva l'esaurimento della quota giornaliera, passa automaticamente al modello di fallback.
     """
-    for attempt in range(1, max_retries + 1):
-        try:
-            return model.generate_content(prompt, generation_config=generation_config)
-        except ResourceExhausted as e:
-            # Prova a leggere il retry_delay indicato da Google, altrimenti backoff esponenziale
-            retry_seconds = getattr(getattr(e, "retry_delay", None), "seconds", None)
-            if not retry_seconds:
-                retry_seconds = 5 * (2 ** (attempt - 1))
+    models_to_try = [gemini_model, gemini_model_fallback]
+    
+    for current_model_name in models_to_try:
+        if not current_model_name:
+            continue
+            
+        print(f"[*] Tentativo con modello Gemini: {current_model_name} ({phase_label})...")
+        model = genai.GenerativeModel(
+            model_name=current_model_name,
+            system_instruction=system_instruction,
+            safety_settings=safety_settings
+        )
+        
+        max_retries = 3
+        for attempt in range(1, max_retries + 1):
+            try:
+                return model.generate_content(prompt, generation_config=generation_config)
+            except ResourceExhausted as e:
+                error_str = str(e)
+                # Se è un limite giornaliero (RPD), inutile insistere sullo stesso modello: passa al fallback
+                if "GenerateRequestsPerDay" in error_str or "quota" in error_str.lower():
+                    print(f"[!] [{phase_label}] Quota giornaliera esaurita per {current_model_name}. Cambio modello...")
+                    break 
+                
+                retry_seconds = getattr(getattr(e, "retry_delay", None), "seconds", None)
+                if not retry_seconds:
+                    retry_seconds = 5 * (2 ** (attempt - 1))
 
-            if attempt >= max_retries:
-                print(f"[-] [{phase_label}] Quota esaurita, tentativi massimi ({max_retries}) raggiunti. Rilancio errore.")
-                raise
+                if attempt >= max_retries:
+                    print(f"[-] [{phase_label}] Tentativi massimi raggiunti per {current_model_name}.")
+                    break
 
-            print(f"[!] [{phase_label}] Rate limit (429) tentativo {attempt}/{max_retries}. "
-                  f"Attendo {retry_seconds}s prima di riprovare...")
-            time.sleep(retry_seconds)
-    raise RuntimeError(f"[{phase_label}] Retry loop terminato senza risultato")
-
+                print(f"[!] [{phase_label}] Rate limit temporaneo su {current_model_name} (tentativo {attempt}/{max_retries}). Attendo {retry_seconds}s...")
+                time.sleep(retry_seconds)
+                
+    raise RuntimeError(f"[{phase_label}] Tutti i modelli Gemini (primario e fallback) hanno esaurito la quota.")
 
 def _check_truncation(response, text, phase_label):
     """Rileva se una risposta Gemini è stata tagliata per limite token."""
@@ -206,13 +223,12 @@ def process_pending_tasks():
     # ==========================================
     try:
         if backend == 'gemini':
-            print("[*] Chiamata a Gemini Flash (FASE 1)...")
-            model_red = genai.GenerativeModel(model_name=gemini_model, system_instruction=system_prompt_red, safety_settings=safety_settings)
+            print("[*] Chiamata a Gemini (FASE 1)...")
             response_red = _call_gemini_with_retry(
-                model_red,
                 user_prompt_red,
                 genai.types.GenerationConfig(response_mime_type="application/json", temperature=0.1, max_output_tokens=4000),
-                "RED"
+                "RED",
+                system_instruction=system_prompt_red
             )
             red_team_response = response_red.text
             red_team_response = _check_truncation(response_red, red_team_response, "RED")
@@ -332,13 +348,12 @@ def process_pending_tasks():
         # FASE 2: BLUE TEAM (Esecuzione condizionale)
         # ==========================================
         if backend == 'gemini':
-            print("[*] Chiamata a Gemini Flash (FASE 2)...")
-            model_blue = genai.GenerativeModel(model_name=gemini_model, system_instruction=system_prompt_blue, safety_settings=safety_settings)
+            print("[*] Chiamata a Gemini (FASE 2)...")
             response_blue = _call_gemini_with_retry(
-                model_blue,
                 user_prompt_blue,
                 genai.types.GenerationConfig(temperature=0.25, max_output_tokens=8192),
-                "BLUE"
+                "BLUE",
+                system_instruction=system_prompt_blue
             )
             blue_team_response = response_blue.text
             blue_team_response = _check_truncation(response_blue, blue_team_response, "BLUE")
