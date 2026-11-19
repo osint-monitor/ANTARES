@@ -4,7 +4,7 @@
 A cognitive simulation platform dedicated to national security and countering disinformation, engineered to run entirely on low-resource, CPU-only servers.
 ANTARES allows analysts to practice adversarial simulation in a purely defensive context. By simulating how specific hostile actors (APTs, hacktivists, state-sponsored groups) manipulate news and narratives, defenders can proactively generate counter-narratives, debunking plans, and threat intelligence reports.
 
-> 📖 **Read the full story:** discover the architecture, the challenges of running AI on a CPU-only server, and why I built ANTARES in my deep-dive article on [Medium](INSERISCI_QUI_IL_LINK_DI_MEDIUM).
+> 📖 **Read the full story:** discover the architecture, the challenges of running AI on a CPU-only server, and why I built ANTARES in my deep-dive article on [Medium](https://medium.com/@info.osintmonitor/building-antares-simulating-disinformation-campaigns-on-a-cpu-only-vps-3fe611e4f4b8?postPublishedType=repub.)
 
 ## ✨ Key Features
 
